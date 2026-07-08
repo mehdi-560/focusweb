@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef, FormEvent } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import GlobeWrapper from "@/components/home/GlobeWrapper";
 import { motion, AnimatePresence } from "framer-motion";
 
 /* ============================================================ */
 /* Types                                                          */
 /* ============================================================ */
-
 type Locale = "en" | "ja";
 
 /* ============================================================ */
@@ -20,37 +20,25 @@ const heroSlides = [
     id: 1,
     src: "/images/hero/slide-1-port.png",
     alt: "Container ship at a major global port at sunrise",
-    tagline: {
-      en: "Where Japan Meets the World",
-      ja: "日本と世界をつなぐ",
-    },
+    tagline: { en: "Where Japan Meets the World", ja: "日本と世界をつなぐ" },
   },
   {
     id: 2,
     src: "/images/hero/slide-2-automotive.png",
     alt: "Vehicles being loaded onto a car carrier ship for export",
-    tagline: {
-      en: "Precision Delivered. Globally.",
-      ja: "精密さを、世界へ。",
-    },
+    tagline: { en: "Precision Delivered. Globally.", ja: "精密さを、世界へ。" },
   },
   {
     id: 3,
     src: "/images/hero/slide-3-medical.png",
     alt: "State-of-the-art medical equipment facility",
-    tagline: {
-      en: "Trusted Technology. Every Market.",
-      ja: "信頼の技術を、すべての市場へ。",
-    },
+    tagline: { en: "Trusted Technology. Every Market.", ja: "信頼の技術を、すべての市場へ。" },
   },
   {
     id: 4,
     src: "/images/hero/slide-4-warehouse.png",
     alt: "Large-scale industrial warehouse and logistics operations",
-    tagline: {
-      en: "Scale Without Limits.",
-      ja: "限界なき規模で。",
-    },
+    tagline: { en: "Scale Without Limits.", ja: "限界なき規模で。" },
   },
 ];
 
@@ -91,37 +79,197 @@ const industries = [
     image: "/images/industries/industrial-materials.jpg",
   },
 ];
-const networkNodes = [
-  { name: "Japan",    nameJa: "日本",   role: "Headquarters", roleJa: "本社",        top: "38%", left: "78%" },
-  { name: "Dubai",   nameJa: "ドバイ",  role: "Regional Hub", roleJa: "地域拠点",    top: "52%", left: "60%" },
-  { name: "Canada",  nameJa: "カナダ",  role: "North America",roleJa: "北米",        top: "28%", left: "20%" },
-  { name: "Pakistan",nameJa: "パキスタン",role: "South Asia",  roleJa: "南アジア",   top: "48%", left: "66%" },
+
+const newsArticles = [
+  {
+    id: 1,
+    slug: "focus-expands-trading-network-dubai",
+    title: "FOCUS Expands Trading Network with New Dubai Partnership",
+    date: "June 15, 2025",
+    category: "Partnerships",
+    excerpt: "FOCUS Co., Ltd. has established a new B2B trading partnership in Dubai, strengthening its Middle East distribution network.",
+    image: "/images/news/news-2-dubai.jpg",
+  },
+  {
+    id: 2,
+    slug: "japanese-automotive-export-record-2025",
+    title: "Japanese Automotive Exports Reach Record Volume in Q1 2025",
+    date: "May 20, 2025",
+    category: "Industry News",
+    excerpt: "Japan's automotive export sector recorded its highest Q1 volume in five years, driven by strong demand in Middle East and South Asian markets.",
+    image: "/images/news/news-3-automotive.jpg",
+  },
+  {
+    id: 3,
+    slug: "focus-osaka-headquarters-established",
+    title: "FOCUS Co., Ltd. Establishes Headquarters in Osaka, Japan",
+    date: "April 1, 2025",
+    category: "Company News",
+    excerpt: "FOCUS Co., Ltd. has formally established its headquarters in Chuo-ku, Osaka, positioning the company as a key trading bridge between Japan and global markets.",
+    image: "/images/news/news-1-tokyo.jpg",
+  },
 ];
 
 const corporateProfile = [
-  { label: "Company Name",          labelJa: "会社名",       value: "FOCUS Co., Ltd. (株式会社FOCUS)" },
-  { label: "Representative Director",labelJa: "代表取締役", value: "[Representative name — to be provided]" },
-  { label: "Capital",               labelJa: "資本金",       value: "[Capital amount — to be provided]" },
-  { label: "Established",           labelJa: "設立",         value: "[Established date — to be provided]" },
-  { label: "Headquarters",          labelJa: "本社所在地",   value: "Chuo-ku, Awaji-cho 3-chome 4-ban, 1-gou 212, Osaka 541-0047, Japan" },
-  { label: "Banking Partners",      labelJa: "主要取引銀行", value: "[Banking partners — to be provided]" },
+  { label: "Company Name", labelJa: "会社名", value: "FOCUS Co., Ltd. (株式会社FOCUS)" },
+  { label: "Representative Director", labelJa: "代表取締役", value: "Jamal Ahmad" },
+  { label: "Capital", labelJa: "資本金", value: "[To be provided]" },
+  { label: "Established Year", labelJa: "設立", value: "2020" },
+  { label: "Headquarters", labelJa: "本社所在地", value: "Chuo-ku, Awaji-cho 3-chome 4-ban, 1-gou 212, Osaka 541-0047, Japan" },
+  { label: "Banking Partners", labelJa: "主要取引銀行", value: "[To be provided]" },
 ];
+
+/* ============================================================ */
+/* Animated FOCUS Logo                                            */
+/* ============================================================ */
+
+function AnimatedLogo() {
+  const letters = ["F", "O", "C", "U", "S"];
+  return (
+    <div className="flex items-center gap-0.5" aria-label="FOCUS">
+      {letters.map((letter, i) => (
+        <motion.span
+          key={letter}
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
+          className="relative text-xl font-bold tracking-widest"
+          style={{
+            background: "linear-gradient(135deg, #ffffff 0%, #8eb1c7 50%, #1096ea 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            filter: "drop-shadow(0 0 8px rgba(16,150,234,0.4))",
+          }}
+        >
+          {letter}
+        </motion.span>
+      ))}
+      {/* Animated underline */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+        className="absolute -bottom-1 left-0 right-0 h-px origin-left"
+        style={{ background: "linear-gradient(90deg, #1096ea, transparent)" }}
+      />
+    </div>
+  );
+}
+
+/* ============================================================ */
+/* Grid + Bubble Overlay (Hero background effect)                */
+/* ============================================================ */
+
+function HeroOverlay() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animId: number;
+    const bubbles: {
+      x: number; y: number; r: number; vx: number; vy: number; alpha: number; life: number; maxLife: number;
+    }[] = [];
+
+    function resize() {
+      if (!canvas) return;
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+
+    function spawnBubble() {
+      if (!canvas) return;
+      const r = 2 + Math.random() * 5;
+      bubbles.push({
+        x: Math.random() * canvas.width,
+        y: canvas.height + r,
+        r,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: -(0.3 + Math.random() * 0.5),
+        alpha: 0,
+        life: 0,
+        maxLife: 120 + Math.random() * 80,
+      });
+    }
+
+    function draw() {
+      if (!canvas || !ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Subtle grid
+      ctx.strokeStyle = "rgba(255,255,255,0.06)";
+      ctx.lineWidth = 0.5;
+      const gridSize = 48;
+      for (let x = 0; x < canvas.width; x += gridSize) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+      }
+      for (let y = 0; y < canvas.height; y += gridSize) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+      }
+
+      // Spawn new bubbles
+      if (Math.random() < 0.15) spawnBubble();
+
+      // Update + draw bubbles
+      for (let i = bubbles.length - 2; i >= 0; i--) {
+        const b = bubbles[i];
+        b.x += b.vx; b.y += b.vy; b.life++;
+        const progress = b.life / b.maxLife;
+        b.alpha = progress < 0.5 ? progress / 0.5 : progress > 1 ? (1 - progress) / 0.5 : 1;
+        b.alpha *= 0.45;
+
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(16,150,234,${b.alpha})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+
+        // Inner glint
+        const glint = ctx.createRadialGradient(b.x - b.r * 0.3, b.y - b.r * 0.3, 0, b.x, b.y, b.r);
+        glint.addColorStop(0, `rgba(255,255,255,${b.alpha * 0.6})`);
+        glint.addColorStop(1, `rgba(16,150,234,${b.alpha * 0.1})`);
+        ctx.fillStyle = glint;
+        ctx.fill();
+
+        if (b.life >= b.maxLife || b.y < -b.r) bubbles.splice(i, 1);
+      }
+
+      animId = requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+    draw();
+    return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 z-10 h-full w-full pointer-events-none"
+      aria-hidden="true"
+    />
+  );
+}
+
+/* ============================================================ */
+/* 3D Globe — Canvas-based, corporate feel                       */
+/* ============================================================ */
 
 /* ============================================================ */
 /* Section 1 — Hero                                               */
 /* ============================================================ */
 
-function Hero({ locale }: { locale: Locale }) {
+function Hero({ locale, setLocale }: { locale: Locale; setLocale: (l: Locale) => void }) {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setActiveSlide((prev) => (prev + 1) % heroSlides.length);
-        setIsTransitioning(false);
-      }, 100);
+      setActiveSlide((prev) => (prev + 1) % heroSlides.length);
     }, 6000);
     return () => clearInterval(interval);
   }, []);
@@ -129,11 +277,8 @@ function Hero({ locale }: { locale: Locale }) {
   const slide = heroSlides[activeSlide];
 
   return (
-    <section
-      className="relative h-screen w-full overflow-hidden"
-      aria-label="Hero slideshow"
-    >
-      {/* Image layer with Ken Burns */}
+    <section className="relative h-screen w-full overflow-hidden" aria-label="Hero slideshow">
+      {/* Images */}
       <AnimatePresence mode="sync">
         {heroSlides.map((s, index) =>
           index === activeSlide ? (
@@ -165,54 +310,49 @@ function Hero({ locale }: { locale: Locale }) {
         )}
       </AnimatePresence>
 
-      {/* Dark overlay for text legibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-10" />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/65 z-10" />
+
+      {/* Grid + bubbles overlay */}
+      <HeroOverlay />
 
       {/* Nav */}
       <header className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-6 py-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-xl font-bold tracking-widest text-white"
-        >
-          FOCUS
-        </motion.div>
+        <div className="relative">
+          <AnimatedLogo />
+        </div>
 
         <motion.nav
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+          transition={{ duration: 0.7, delay: 0.4 }}
           className="hidden items-center gap-8 md:flex"
-          aria-label="Main navigation"
         >
           {[
             { href: "/", label: "Home" },
             { href: "/industries", label: "Industries" },
+            { href: "/news-room", label: "Newsroom" },
             { href: "/company", label: "Company" },
             { href: "/contact", label: "Contact" },
           ].map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-white/90 transition-colors hover:text-white"
+              className="text-sm font-medium text-white/85 transition-colors hover:text-white"
             >
               {link.label}
             </Link>
           ))}
-
-          {/* Language toggle */}
           <button
-            onClick={() => {}}
-            className="rounded-full border border-white/30 px-3 py-1 text-xs font-semibold text-white/80 transition-all hover:border-white hover:text-white"
-            aria-label="Switch language"
+            onClick={() => setLocale(locale === "en" ? "ja" : "en")}
+            className="rounded-full border border-white/25 px-3 py-1 text-xs font-semibold text-white/75 transition-all hover:border-white hover:text-white"
           >
             {locale === "en" ? "日本語" : "EN"}
           </button>
         </motion.nav>
       </header>
 
-      {/* Tagline — changes per slide */}
+      {/* Tagline */}
       <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
         <AnimatePresence mode="wait">
           <motion.div
@@ -224,26 +364,19 @@ function Hero({ locale }: { locale: Locale }) {
             className="flex flex-col items-center gap-4"
           >
             <motion.p
-              initial={{ opacity: 0, letterSpacing: "0.3em" }}
-              animate={{ opacity: 1, letterSpacing: "0.2em" }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="text-xs font-semibold uppercase tracking-[0.25em] text-white/50"
             >
               FOCUS Co., Ltd. — Global Trading
             </motion.p>
-
             <h1 className="max-w-4xl text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-lg md:text-6xl lg:text-7xl">
               {locale === "en" ? slide.tagline.en : slide.tagline.ja}
             </h1>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-2 text-sm text-white/50"
-            >
+            <p className="mt-1 text-sm text-white/40">
               {locale === "en" ? slide.tagline.ja : slide.tagline.en}
-            </motion.p>
+            </p>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -255,17 +388,13 @@ function Hero({ locale }: { locale: Locale }) {
             key={s.id}
             onClick={() => setActiveSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
-            className="group flex items-center"
           >
             <span
               className="block rounded-full transition-all duration-500"
               style={{
                 width: index === activeSlide ? "28px" : "8px",
                 height: "8px",
-                backgroundColor:
-                  index === activeSlide
-                    ? "var(--color-primary-bright)"
-                    : "rgba(255,255,255,0.35)",
+                backgroundColor: index === activeSlide ? "var(--color-primary-bright)" : "rgba(255,255,255,0.3)",
               }}
             />
           </button>
@@ -276,15 +405,12 @@ function Hero({ locale }: { locale: Locale }) {
 }
 
 /* ============================================================ */
-/* Section 2 — Our Business                                       */
+/* Section 2 — Business Grid                                      */
 /* ============================================================ */
 
 function BusinessGrid() {
   return (
-    <section
-      className="bg-background px-6 py-24 md:px-12 lg:py-32"
-      aria-labelledby="business-heading"
-    >
+    <section className="bg-background px-6 py-24 md:px-12 lg:py-32" aria-labelledby="business-heading">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -293,17 +419,11 @@ function BusinessGrid() {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            事業内容
-          </p>
-          <h2
-            id="business-heading"
-            className="text-3xl font-bold tracking-tight text-foreground md:text-4xl"
-          >
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">事業内容</p>
+          <h2 id="business-heading" className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             Our Business
           </h2>
         </motion.div>
-
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {industries.map((industry, index) => (
             <motion.div
@@ -319,7 +439,6 @@ function BusinessGrid() {
                 className="group relative flex h-72 flex-col justify-end overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl"
                 aria-label={`Learn more about ${industry.name}`}
               >
-                {/* Real industry image */}
                 <Image
                   src={industry.image}
                   alt={industry.name}
@@ -327,24 +446,12 @@ function BusinessGrid() {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-
-                {/* Dark gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300 group-hover:from-black/90" />
-
-                {/* Hover border glow */}
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 transition-all duration-300 group-hover:ring-primary-bright/60" />
-
-                {/* Text content */}
                 <div className="relative z-10">
-                  <h3 className="text-lg font-semibold text-white">
-                    {industry.name}
-                  </h3>
-                  <p className="mt-1 text-xs font-medium text-white/50">
-                    {industry.name}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-white/75">
-                    {industry.description}
-                  </p>
+                  <h3 className="text-lg font-semibold text-white">{industry.name}</h3>
+                  <p className="mt-0.5 text-xs text-white/45">{industry.nameJa}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-white/75">{industry.description}</p>
                   <span className="mt-3 flex items-center gap-1 text-xs font-medium text-primary-bright opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     Learn more →
                   </span>
@@ -357,18 +464,26 @@ function BusinessGrid() {
     </section>
   );
 }
+
 /* ============================================================ */
-/* Section 3 — Global Network                                     */
+/* Section 3 — Global Network with 3D Globe                      */
 /* ============================================================ */
 
 function GlobalNetwork({ locale }: { locale: Locale }) {
+  const networkNodes = [
+    { name: "Japan", nameJa: "日本", role: "Headquarters", roleJa: "本社" },
+    { name: "Dubai", nameJa: "ドバイ", role: "Regional Hub", roleJa: "地域拠点" },
+    { name: "Canada", nameJa: "カナダ", role: "North America", roleJa: "北米" },
+    { name: "Pakistan", nameJa: "パキスタン", role: "South Asia", roleJa: "南アジア" },
+  ];
+
   return (
     <section
       className="px-6 py-24 md:px-12 lg:py-32"
-      style={{ background: "linear-gradient(180deg, var(--color-secondary)/8% 0%, var(--color-background) 100%)" }}
+      style={{ background: "linear-gradient(180deg, #f0f7fc 0%, #fcfeff 100%)" }}
       aria-labelledby="network-heading"
     >
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -376,111 +491,62 @@ function GlobalNetwork({ locale }: { locale: Locale }) {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            グローバルネットワーク
-          </p>
-          <h2
-            id="network-heading"
-            className="text-3xl font-bold tracking-tight text-foreground md:text-4xl"
-          >
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">グローバルネットワーク</p>
+          <h2 id="network-heading" className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             Global Network
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted">
-            Operating from our headquarters in Osaka, Japan, with active trading
-            relationships across four continents.
+            Headquartered in Osaka, Japan — with active trade connections across the Middle East, North America, and South Asia.
           </p>
         </motion.div>
 
-        {/* Stylized map container */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.8 }}
-          className="relative mx-auto aspect-[16/9] w-full max-w-4xl overflow-hidden rounded-3xl border border-muted/30 bg-foreground/3"
-          style={{ background: "linear-gradient(135deg, #f0f7fc 0%, #e8f4fb 100%)" }}
-        >
-          {/* Decorative grid lines */}
-          <svg
-            className="absolute inset-0 h-full w-full opacity-10"
-            xmlns="http://www.w3.org/2000/svg"
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          {/* Globe */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8 }}
           >
-            <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--color-primary)" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
+            <GlobeWrapper/>
+          </motion.div>
 
-          {/* Network nodes */}
-          {networkNodes.map((node, index) => (
-            <motion.div
-              key={node.name}
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: 0.4 + index * 0.15, ease: "easeOut" }}
-              className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center"
-              style={{ top: node.top, left: node.left }}
-            >
-              {/* Ping animation */}
-              <span className="relative flex h-4 w-4">
-                <span
-                  className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-50"
-                  style={{ backgroundColor: "var(--color-primary-bright)" }}
-                />
-                <span
-                  className="relative inline-flex h-4 w-4 rounded-full border-2 border-white"
-                  style={{ backgroundColor: "var(--color-primary)" }}
-                />
-              </span>
-              <span className="mt-2 whitespace-nowrap text-xs font-bold text-foreground">
-                {locale === "en" ? node.name : node.nameJa}
-              </span>
-              <span className="whitespace-nowrap text-[10px] text-muted">
-                {locale === "en" ? node.role : node.roleJa}
-              </span>
-            </motion.div>
-          ))}
-
-          {/* Connecting lines between Japan and each other node */}
-          <svg className="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg">
-            {/* Japan→Dubai */}
-            <motion.line
-              x1="78%" y1="38%" x2="60%" y2="52%"
-              stroke="var(--color-primary)"
-              strokeWidth="1"
-              strokeDasharray="4 4"
-              initial={{ pathLength: 0, opacity: 0 }}
-              whileInView={{ pathLength: 1, opacity: 0.4 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.8 }}
-            />
-            {/* Japan→Canada */}
-            <motion.line
-              x1="78%" y1="38%" x2="20%" y2="28%"
-              stroke="var(--color-primary)"
-              strokeWidth="1"
-              strokeDasharray="4 4"
-              initial={{ pathLength: 0, opacity: 0 }}
-              whileInView={{ pathLength: 1, opacity: 0.4 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: 1 }}
-            />
-            {/* Japan→Pakistan */}
-            <motion.line
-              x1="78%" y1="38%" x2="66%" y2="48%"
-              stroke="var(--color-primary)"
-              strokeWidth="1"
-              strokeDasharray="4 4"
-              initial={{ pathLength: 0, opacity: 0 }}
-              whileInView={{ pathLength: 1, opacity: 0.4 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 1.1 }}
-            />
-          </svg>
-        </motion.div>
+          {/* Node list */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-4"
+          >
+            {networkNodes.map((node, i) => (
+              <motion.div
+                key={node.name}
+                initial={{ opacity: 0, x: 16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+                className="flex items-center gap-4 rounded-2xl border border-muted/30 bg-white p-4 shadow-sm"
+              >
+                <span className="relative flex h-3 w-3 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-bright opacity-50" />
+                  <span className="relative inline-flex h-3 w-3 rounded-full bg-primary" />
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">
+                    {locale === "en" ? node.name : node.nameJa}
+                    {i === 0 && (
+                      <span className="ml-2 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">HQ</span>
+                    )}
+                  </p>
+                  <p className="text-xs text-muted">
+                    {locale === "en" ? node.role : node.roleJa}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -501,22 +567,16 @@ function CorporateProfilePreview({ locale }: { locale: Locale }) {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            会社概要
-          </p>
-          <h2
-            id="profile-heading"
-            className="text-3xl font-bold tracking-tight text-foreground md:text-4xl"
-          >
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">会社概要</p>
+          <h2 id="profile-heading" className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             Corporate Profile
           </h2>
         </motion.div>
-
         <motion.dl
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6 }}
           className="overflow-hidden rounded-2xl border border-muted/40"
         >
           {corporateProfile.map((row, index) => (
@@ -531,9 +591,7 @@ function CorporateProfilePreview({ locale }: { locale: Locale }) {
               <dt className="shrink-0 text-sm font-medium text-muted">
                 {locale === "en" ? row.label : row.labelJa}
               </dt>
-              <dd className="text-sm font-semibold text-foreground sm:text-right">
-                {row.value}
-              </dd>
+              <dd className="text-sm font-semibold text-foreground sm:text-right">{row.value}</dd>
             </motion.div>
           ))}
         </motion.dl>
@@ -543,185 +601,203 @@ function CorporateProfilePreview({ locale }: { locale: Locale }) {
 }
 
 /* ============================================================ */
-/* Section 5 — Contact Footer                                     */
+/* Section 5 — Newsroom Preview                                   */
 /* ============================================================ */
 
-function ContactFooter() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState("");
-  const honeypotRef = useRef<HTMLInputElement>(null);
-
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus("loading");
-    setErrorMessage("");
-
-    const formData = new FormData(e.currentTarget);
-    const payload = {
-      name: formData.get("name"),
-      company: formData.get("company"),
-      email: formData.get("email"),
-      industry: formData.get("industry"),
-      message: formData.get("message"),
-      honeypot: honeypotRef.current?.value ?? "",
-    };
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setStatus("error");
-        setErrorMessage(data.error ?? "Something went wrong. Please try again.");
-        return;
-      }
-      setStatus("success");
-      (e.target as HTMLFormElement).reset();
-    } catch {
-      setStatus("error");
-      setErrorMessage("Network error. Please check your connection and try again.");
-    }
-  }
-
-  const inputClass =
-    "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-all focus:border-primary-bright focus:bg-white/8";
-
+function NewsroomPreview() {
   return (
-    <footer
-      className="px-6 py-20 text-white md:px-12 lg:py-28"
-      style={{ background: "linear-gradient(135deg, #0a1420 0%, #0c2a40 100%)" }}
+    <section
+      className="px-6 py-24 md:px-12 lg:py-32"
+      style={{ background: "linear-gradient(180deg, #f0f7fc 0%, #fcfeff 100%)" }}
+      aria-labelledby="news-heading"
     >
-      <div className="mx-auto grid max-w-6xl gap-16 md:grid-cols-2">
-        {/* Left — company info */}
-        <div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-primary-bright">
-              Contact Us
-            </p>
-            <h2 className="mb-8 text-2xl font-bold tracking-tight md:text-3xl">
-              Start a Conversation
+      <div className="mx-auto max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 flex items-end justify-between"
+        >
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">ニュースルーム</p>
+            <h2 id="news-heading" className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              Latest News
             </h2>
-            <div className="space-y-5 text-sm text-white/70">
-              <div>
-                <p className="mb-1 font-semibold text-white">FOCUS Co., Ltd.</p>
-                <p>
-                  Chuo-ku, Awaji-cho 3-chome 4-ban, 1-gou 212
-                  <br />
-                  Osaka, Osaka 541-0047, Japan
-                </p>
+          </div>
+          <Link
+            href="/news-room"
+            className="hidden text-sm font-semibold text-primary transition-colors hover:text-primary-bright md:block"
+          >
+            View all →
+          </Link>
+        </motion.div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {newsArticles.map((article, index) => (
+            <motion.article
+              key={article.id}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group overflow-hidden rounded-2xl border border-muted/30 bg-white shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/30"
+            >
+              <div className="relative h-44 overflow-hidden">
+                <Image
+                  src={article.image}
+                  alt={article.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                <span className="absolute top-3 left-3 rounded-full bg-primary px-2.5 py-1 text-xs font-semibold text-white">
+                  {article.category}
+                </span>
               </div>
-              <div>
-                <p className="mb-1 font-semibold text-white">Email</p>
-                <a
-                  href="mailto:jamal@thefocus.jp"
-                  className="text-primary-bright transition-colors hover:text-secondary"
+              <div className="p-5">
+                <time className="mb-2 block text-xs text-muted">{article.date}</time>
+                <h3 className="text-sm font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
+                  {article.title}
+                </h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted line-clamp-2">{article.excerpt}</p>
+                <Link
+                  href={`/news-room/${article.slug}`}
+                  className="mt-4 block text-xs font-semibold text-primary hover:text-primary-bright transition-colors"
                 >
-                  jamal@thefocus.jp
-                </a>
+                  Read more →
+                </Link>
               </div>
-            </div>
-          </motion.div>
+            </motion.article>
+          ))}
         </div>
 
-        {/* Right — form */}
+        <div className="mt-8 text-center md:hidden">
+          <Link
+            href="/news-room"
+            className="text-sm font-semibold text-primary transition-colors hover:text-primary-bright"
+          >
+            View all news →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================ */
+/* Footer                                                         */
+/* ============================================================ */
+
+function Footer() {
+  return (
+    <footer
+      className="text-white"
+      style={{ background: "linear-gradient(135deg, #0a1420 0%, #0c2a40 100%)" }}
+    >
+      {/* CTA band */}
+      <div className="border-b border-white/8 px-6 py-16 text-center md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.15 }}
+          transition={{ duration: 0.6 }}
         >
-          <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-            {/* Honeypot — hidden from real users */}
-            <input
-              ref={honeypotRef}
-              type="text"
-              name="honeypot"
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-              style={{ position: "absolute", left: "-9999px", width: 0, height: 0, opacity: 0 }}
-            />
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div>
-                <label htmlFor="name" className="mb-1.5 block text-xs font-medium text-white/60">
-                  Name <span className="text-primary-bright">*</span>
-                </label>
-                <input id="name" name="name" type="text" required minLength={2} className={inputClass} placeholder="Your name" />
-              </div>
-              <div>
-                <label htmlFor="company" className="mb-1.5 block text-xs font-medium text-white/60">
-                  Company
-                </label>
-                <input id="company" name="company" type="text" className={inputClass} placeholder="Company name" />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="email" className="mb-1.5 block text-xs font-medium text-white/60">
-                Email <span className="text-primary-bright">*</span>
-              </label>
-              <input id="email" name="email" type="email" required className={inputClass} placeholder="you@company.com" />
-            </div>
-
-            <div>
-              <label htmlFor="industry" className="mb-1.5 block text-xs font-medium text-white/60">
-                Industry of Interest
-              </label>
-              <input id="industry" name="industry" type="text" className={inputClass} placeholder="e.g. Medical Equipment, Automotive..." />
-            </div>
-
-            <div>
-              <label htmlFor="message" className="mb-1.5 block text-xs font-medium text-white/60">
-                Message <span className="text-primary-bright">*</span>
-              </label>
-              <textarea id="message" name="message" required minLength={10} rows={4} className={inputClass} placeholder="Tell us about your inquiry..." />
-            </div>
-
-            <motion.button
-              type="submit"
-              disabled={status === "loading"}
-              whileHover={{ scale: 1.02, backgroundColor: "var(--color-primary)" }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full rounded-xl px-6 py-3.5 text-sm font-semibold text-white transition-colors disabled:opacity-50"
-              style={{ backgroundColor: "var(--color-primary-bright)" }}
-            >
-              {status === "loading" ? "Sending..." : "Send Inquiry →"}
-            </motion.button>
-
-            {status === "success" && (
-              <motion.p
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                role="status"
-                className="text-sm text-primary-bright"
-              >
-                ✓ Thank you — your message has been sent. We will be in touch shortly.
-              </motion.p>
-            )}
-            {status === "error" && (
-              <p role="alert" className="text-sm text-red-400">
-                {errorMessage}
-              </p>
-            )}
-          </form>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-bright">
+            お問い合わせ
+          </p>
+          <h2 className="mb-4 text-2xl font-bold tracking-tight md:text-3xl">
+            Ready to Work with FOCUS?
+          </h2>
+          <p className="mx-auto mb-8 max-w-md text-sm leading-relaxed text-white/55">
+            We welcome B2B inquiries from distributors, manufacturers, and institutions across all industries we serve.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary-bright px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-primary hover:shadow-lg hover:shadow-primary/25"
+          >
+            Contact Us →
+          </Link>
         </motion.div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="mx-auto mt-16 max-w-6xl border-t border-white/8 pt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-xs text-white/30">
-          © {new Date().getFullYear()} FOCUS Co., Ltd. All rights reserved.
-        </p>
-        <p className="text-xs text-white/20">Osaka, Japan</p>
+      {/* Footer links */}
+      <div className="mx-auto max-w-6xl px-6 py-12 md:px-12">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          {/* Brand */}
+          <div className="col-span-2 md:col-span-1">
+            <p className="mb-3 text-lg font-bold tracking-widest"
+              style={{
+                background: "linear-gradient(135deg, #ffffff, #8eb1c7, #1096ea)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              FOCUS
+            </p>
+            <p className="text-xs leading-relaxed text-white/40">
+              Japan-based global trading company. Connecting Japanese manufacturing excellence with international markets.
+            </p>
+          </div>
+
+          {/* Industries */}
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/40">Industries</p>
+            <ul className="space-y-2.5">
+              {industries.map((ind) => (
+                <li key={ind.slug}>
+                  <Link href={`/industries/${ind.slug}`} className="text-xs text-white/60 transition-colors hover:text-white">
+                    {ind.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/40">Company</p>
+            <ul className="space-y-2.5">
+              {[
+                { href: "/industries", label: "Our Industries" },
+                { href: "/company", label: "Corporate Profile" },
+                { href: "/news-room", label: "Newsroom" },
+                { href: "/contact", label: "Contact" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-xs text-white/60 transition-colors hover:text-white">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/40">Contact</p>
+            <address className="not-italic space-y-2">
+              <p className="text-xs text-white/60 leading-relaxed">
+                Chuo-ku, Awaji-cho 3-chome 4-ban,<br />
+                1-gou 212, Osaka 541-0047,<br />
+                Japan
+              </p>
+              <a href="mailto:jamal@thefocus.jp" className="block text-xs text-primary-bright hover:text-secondary transition-colors">
+                jamal@thefocus.jp
+              </a>
+            </address>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="mt-12 flex flex-col gap-2 border-t border-white/8 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-white/25">
+            © {new Date().getFullYear()} FOCUS Co., Ltd. All rights reserved.
+          </p>
+          <p className="text-xs text-white/20">Osaka, Japan · 株式会社FOCUS</p>
+        </div>
       </div>
     </footer>
   );
@@ -736,11 +812,12 @@ export default function HomePage() {
 
   return (
     <main>
-      <Hero locale={locale} />
+      <Hero locale={locale} setLocale={setLocale} />
       <BusinessGrid />
       <GlobalNetwork locale={locale} />
       <CorporateProfilePreview locale={locale} />
-      <ContactFooter />
+      <NewsroomPreview />
+      <Footer />
     </main>
   );
 }
