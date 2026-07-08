@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // Simple in-memory rate limiter (per server instance).
 // For production at scale, replace with a durable store (e.g. Redis/Upstash).
 const submissionLog = new Map<string, number[]>();
@@ -30,6 +27,14 @@ function isValidEmail(email: string): boolean {
 
 export async function POST(request: NextRequest) {
   try {
+    const apiKey = process.env.RESEND_API_KEY;
+
+    if (!apiKey) {
+      return NextResponse.json({ error: "RESEND_API_KEY is missing" }, { status: 500 });
+    }
+
+    const resend = new Resend(apiKey);
+
     const ip = request.headers.get("x-forwarded-for") ?? "unknown";
 
     if (isRateLimited(ip)) {
@@ -61,7 +66,7 @@ export async function POST(request: NextRequest) {
         { error: "Please provide a message of at least 10 characters." },
         { status: 400 }
       );
-    }
+    } 
 
     // Basic sanitization — strip any HTML tags from free-text fields
     const sanitize = (input: string) => input.replace(/<[^>]*>/g, "").trim();
