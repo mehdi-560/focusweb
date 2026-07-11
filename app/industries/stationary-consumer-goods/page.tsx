@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Stationery & Consumer Goods | FOCUS Co., Ltd.",
     description:
       "Premium Japanese stationery and consumer goods for international B2B distributors and retailers.",
-    url: "https://www.focus-trading.com/industries/stationery-consumer-goods",
+    url: "https://www.focus-trading.com/industries/stationary-consumer-goods",
     images: [{ url: "/images/industries/stationery-consumer-goods.jpg" }],
   },
 };
