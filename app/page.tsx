@@ -113,10 +113,9 @@ const newsArticles = [
 const corporateProfile = [
   { label: "Company Name", labelJa: "会社名", value: "FOCUS Co., Ltd. (株式会社FOCUS)" },
   { label: "Representative Director", labelJa: "代表取締役", value: "Jamal Ahmad" },
-  { label: "Capital", labelJa: "資本金", value: "[To be provided]" },
-  { label: "Established Year", labelJa: "設立", value: "2020" },
+  { label: "Capital", labelJa: "資本金", value: "5,000,000 ¥" },
+  { label: "Established Year", labelJa: "設立", value: "2023" },
   { label: "Headquarters", labelJa: "本社所在地", value: "Chuo-ku, Awaji-cho 3-chome 4-ban, 1-gou 212, Osaka 541-0047, Japan" },
-  { label: "Banking Partners", labelJa: "主要取引銀行", value: "[To be provided]" },
 ];
 
 /* ============================================================ */
@@ -124,36 +123,23 @@ const corporateProfile = [
 /* ============================================================ */
 
 function AnimatedLogo() {
-  const letters = ["F", "O", "C", "U", "S"];
   return (
-    <div className="flex items-center gap-0.5" aria-label="FOCUS">
-      {letters.map((letter, i) => (
-        <motion.span
-          key={letter}
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
-          className="relative text-xl font-bold tracking-widest"
-          style={{
-            background: "linear-gradient(135deg, #ffffff 0%, #8eb1c7 50%, #1096ea 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            filter: "drop-shadow(0 0 8px rgba(16,150,234,0.4))",
-          }}
-        >
-          {letter}
-        </motion.span>
-      ))}
-      {/* Animated underline */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-        className="absolute -bottom-1 left-0 right-0 h-px origin-left"
-        style={{ background: "linear-gradient(90deg, #1096ea, transparent)" }}
-      />
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <Link href="/">
+        <Image
+          src="/images/focus_logo.png"
+          alt="FOCUS Co., Ltd."
+          width={120}
+          height={40}
+          style={{ filter: "brightness(0) invert(1)" }}
+          priority
+        />
+      </Link>
+    </motion.div>
   );
 }
 
@@ -594,7 +580,22 @@ function CorporateProfilePreview({ locale }: { locale: Locale }) {
               <dd className="text-sm font-semibold text-foreground sm:text-right">{row.value}</dd>
             </motion.div>
           ))}
-        </motion.dl>
+        </motion.dl> 
+        <motion.div
+               initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                 className="mt-8 text-center"
+                 >
+  <Link
+    href="/company"
+    className="inline-flex items-center gap-2 rounded-xl border border-primary px-6 py-3 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white"
+  >
+    Full Corporate Profile →
+  </Link>
+</motion.div>
+        
       </div>
     </section>
   );
@@ -727,19 +728,13 @@ function Footer() {
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <p className="mb-3 text-lg font-bold tracking-widest"
-              style={{
-                background: "linear-gradient(135deg, #ffffff, #8eb1c7, #1096ea)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              FOCUS
-            </p>
-            <p className="text-xs leading-relaxed text-white/40">
-              Japan-based global trading company. Connecting Japanese manufacturing excellence with international markets.
-            </p>
+            <Image
+              src="/images/focus_logo.png"
+              alt="FOCUS Co., Ltd."
+              width={110}
+              height={36}
+              style={{ filter: "brightness(0) invert(1)", opacity: 0.85 }}
+/>
           </div>
 
           {/* Industries */}
