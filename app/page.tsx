@@ -135,7 +135,11 @@ function AnimatedLogo() {
           alt="FOCUS Co., Ltd."
           width={120}
           height={40}
-          style={{ filter: "brightness(0) invert(1)" }}
+          className="h-auto w-30"
+            style={{
+              color: "transparent",
+               filter: "brightness(0) invert(1)", 
+            }}
           priority
         />
       </Link>
@@ -733,7 +737,10 @@ function Footer() {
               alt="FOCUS Co., Ltd."
               width={110}
               height={36}
-              style={{ filter: "brightness(0) invert(1)", opacity: 0.85 }}
+              className="h-auto w-[110px] opacity-85"
+              style={{ 
+                filter: "brightness(0) invert(1)",
+                  }}
 />
           </div>
 
