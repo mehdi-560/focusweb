@@ -23,7 +23,7 @@ const articles = [
     title: "FOCUS Expands Trading Network with New Dubai Partnership",
     titleJa: "FOCUSがドバイの新パートナーシップで取引ネットワークを拡大",
     date: "2025-06-15",
-    dateFormatted: "June 15, 2025",
+    dateFormatted: "June 15, 2024",
     category: "Partnerships",
     excerpt:
       "FOCUS Co., Ltd. has established a new B2B trading partnership in Dubai, strengthening its Middle East distribution network for automotive and industrial materials exports from Japan.",
@@ -32,11 +32,11 @@ const articles = [
   },
   {
     id: 2,
-    slug: "japanese-automotive-export-record-2025",
-    title: "Japanese Automotive Exports Reach Record Volume in Q1 2025",
-    titleJa: "2025年第1四半期に日本の自動車輸出が過去最高を記録",
-    date: "2025-05-20",
-    dateFormatted: "May 20, 2025",
+    slug: "japanese-automotive-export-record-2026",
+    title: "Japanese Automotive Exports Reach Record Volume in Q1 2026",
+    titleJa: "2026年第1四半期に日本の自動車輸出が過去最高を記録",
+    date: "2026-05-20",
+    dateFormatted: "May 20, 2026",
     category: "Industry News",
     excerpt:
       "Japan's automotive export sector recorded its highest Q1 volume in five years, driven by strong demand in the Middle East and South Asian markets where FOCUS operates.",
@@ -49,7 +49,7 @@ const articles = [
     title: "FOCUS Co., Ltd. Establishes Headquarters in Osaka, Japan",
     titleJa: "株式会社FOCUSが大阪に本社を設立",
     date: "2025-04-01",
-    dateFormatted: "April 1, 2025",
+    dateFormatted: "October 1, 2023",
     category: "Company News",
     excerpt:
       "FOCUS Co., Ltd. has formally established its headquarters in Chuo-ku, Osaka, Japan, positioning the company as a key trading bridge between Japanese manufacturers and global markets.",
@@ -58,14 +58,14 @@ const articles = [
   },
   {
     id: 4,
-    slug: "global-shipping-demand-surge-2025",
+    slug: "global-shipping-demand-surge-2026",
     title: "Global Shipping Demand Surges as Asia-Pacific Trade Routes Expand",
     titleJa: "アジア太平洋の貿易ルート拡大で世界の海運需要が急増",
-    date: "2025-03-10",
-    dateFormatted: "March 10, 2025",
+    date: "2026-03-10",
+    dateFormatted: "March 10, 2026",
     category: "Industry News",
     excerpt:
-      "Asia-Pacific shipping lanes are experiencing increased freight volumes in 2025, creating favorable conditions for Japanese export trading companies including FOCUS Co., Ltd.",
+      "Asia-Pacific shipping lanes are experiencing increased freight volumes in 2026, creating favorable conditions for Japanese export trading companies including FOCUS Co., Ltd.",
     image: "/images/news/news-4-shipping.jpg",
     imageAlt: "Large container ship navigating open ocean representing global shipping demand",
   },

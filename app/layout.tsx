@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.focus-trading.com"),
+  metadataBase: new URL("https://www.thefocus.jp"),
   title: {
     default: "FOCUS Co., Ltd. | Connecting Global Infrastructure",
     template: "%s | FOCUS Co., Ltd.",
@@ -26,12 +28,13 @@ export const metadata: Metadata = {
     "medical equipment export",
     "industrial materials trading",
     "FOCUS trading company",
+    "Osaka trading company",
   ],
   openGraph: {
     title: "FOCUS Co., Ltd. | Connecting Global Infrastructure",
     description:
       "A Japan-based trading company bridging global markets across automotive, medical, textile, stationery, and industrial materials industries.",
-    url: "https://www.focus-trading.com",
+    url: "https://www.thefocus.jp",
     siteName: "FOCUS Co., Ltd.",
     locale: "en_US",
     type: "website",
@@ -42,21 +45,19 @@ export const metadata: Metadata = {
     description:
       "A Japan-based trading company bridging global markets across automotive, medical, textile, stationery, and industrial materials industries.",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
+  icons: { icon: "/favicon.png" },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

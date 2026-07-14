@@ -122,30 +122,6 @@ const corporateProfile = [
 /* Animated FOCUS Logo                                            */
 /* ============================================================ */
 
-function AnimatedLogo() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <Link href="/">
-        <Image
-          src="/images/focus_logo.png"
-          alt="FOCUS Co., Ltd."
-          width={120}
-          height={40}
-          className="h-auto w-30"
-            style={{
-              color: "transparent",
-               filter: "brightness(0) invert(1)", 
-            }}
-          priority
-        />
-      </Link>
-    </motion.div>
-  );
-}
 
 /* ============================================================ */
 /* Grid + Bubble Overlay (Hero background effect)                */
@@ -307,40 +283,6 @@ function Hero({ locale, setLocale }: { locale: Locale; setLocale: (l: Locale) =>
       <HeroOverlay />
 
       {/* Nav */}
-      <header className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-6 py-6 md:px-12">
-        <div className="relative">
-          <AnimatedLogo />
-        </div>
-
-        <motion.nav
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="hidden items-center gap-8 md:flex"
-        >
-          {[
-            { href: "/", label: "Home" },
-            { href: "/industries", label: "Industries" },
-            { href: "/news-room", label: "Newsroom" },
-            { href: "/company", label: "Company" },
-            { href: "/contact", label: "Contact" },
-          ].map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-white/85 transition-colors hover:text-white"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <button
-            onClick={() => setLocale(locale === "en" ? "ja" : "en")}
-            className="rounded-full border border-white/25 px-3 py-1 text-xs font-semibold text-white/75 transition-all hover:border-white hover:text-white"
-          >
-            {locale === "en" ? "日本語" : "EN"}
-          </button>
-        </motion.nav>
-      </header>
 
       {/* Tagline */}
       <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
@@ -695,115 +637,6 @@ function NewsroomPreview() {
 /* Footer                                                         */
 /* ============================================================ */
 
-function Footer() {
-  return (
-    <footer
-      className="text-white"
-      style={{ background: "linear-gradient(135deg, #0a1420 0%, #0c2a40 100%)" }}
-    >
-      {/* CTA band */}
-      <div className="border-b border-white/8 px-6 py-16 text-center md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-bright">
-            お問い合わせ
-          </p>
-          <h2 className="mb-4 text-2xl font-bold tracking-tight md:text-3xl">
-            Ready to Work with FOCUS?
-          </h2>
-          <p className="mx-auto mb-8 max-w-md text-sm leading-relaxed text-white/55">
-            We welcome B2B inquiries from distributors, manufacturers, and institutions across all industries we serve.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 rounded-xl bg-primary-bright px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-primary hover:shadow-lg hover:shadow-primary/25"
-          >
-            Contact Us →
-          </Link>
-        </motion.div>
-      </div>
-
-      {/* Footer links */}
-      <div className="mx-auto max-w-6xl px-6 py-12 md:px-12">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
-            <Image
-              src="/images/focus_logo.png"
-              alt="FOCUS Co., Ltd."
-              width={110}
-              height={36}
-              className="h-auto w-[110px] opacity-85"
-              style={{ 
-                filter: "brightness(0) invert(1)",
-                  }}
-/>
-          </div>
-
-          {/* Industries */}
-          <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/40">Industries</p>
-            <ul className="space-y-2.5">
-              {industries.map((ind) => (
-                <li key={ind.slug}>
-                  <Link href={`/industries/${ind.slug}`} className="text-xs text-white/60 transition-colors hover:text-white">
-                    {ind.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/40">Company</p>
-            <ul className="space-y-2.5">
-              {[
-                { href: "/industries", label: "Our Industries" },
-                { href: "/company", label: "Corporate Profile" },
-                { href: "/news-room", label: "Newsroom" },
-                { href: "/contact", label: "Contact" },
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-xs text-white/60 transition-colors hover:text-white">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/40">Contact</p>
-            <address className="not-italic space-y-2">
-              <p className="text-xs text-white/60 leading-relaxed">
-                Chuo-ku, Awaji-cho 3-chome 4-ban,<br />
-                1-gou 212, Osaka 541-0047,<br />
-                Japan
-              </p>
-              <a href="mailto:jamal@thefocus.jp" className="block text-xs text-primary-bright hover:text-secondary transition-colors">
-                jamal@thefocus.jp
-              </a>
-            </address>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="mt-12 flex flex-col gap-2 border-t border-white/8 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-white/25">
-            © {new Date().getFullYear()} FOCUS Co., Ltd. All rights reserved.
-          </p>
-          <p className="text-xs text-white/20">Osaka, Japan · 株式会社FOCUS</p>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
 /* ============================================================ */
 /* Homepage                                                        */
@@ -819,7 +652,6 @@ export default function HomePage() {
       <GlobalNetwork locale={locale} />
       <CorporateProfilePreview locale={locale} />
       <NewsroomPreview />
-      <Footer />
     </main>
   );
 }
