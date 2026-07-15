@@ -85,16 +85,16 @@ const newsArticles = [
     id: 1,
     slug: "focus-expands-trading-network-dubai",
     title: "FOCUS Expands Trading Network with New Dubai Partnership",
-    date: "June 15, 2025",
+    date: "June 15, 2024",
     category: "Partnerships",
     excerpt: "FOCUS Co., Ltd. has established a new B2B trading partnership in Dubai, strengthening its Middle East distribution network.",
     image: "/images/news/news-2-dubai.jpg",
   },
   {
     id: 2,
-    slug: "japanese-automotive-export-record-2025",
-    title: "Japanese Automotive Exports Reach Record Volume in Q1 2025",
-    date: "May 20, 2025",
+    slug: "japanese-automotive-export-record-2026",
+    title: "Japanese Automotive Exports Reach Record Volume in Q1 2026",
+    date: "May 20, 2026",
     category: "Industry News",
     excerpt: "Japan's automotive export sector recorded its highest Q1 volume in five years, driven by strong demand in Middle East and South Asian markets.",
     image: "/images/news/news-3-automotive.jpg",
@@ -103,7 +103,7 @@ const newsArticles = [
     id: 3,
     slug: "focus-osaka-headquarters-established",
     title: "FOCUS Co., Ltd. Establishes Headquarters in Osaka, Japan",
-    date: "April 1, 2025",
+    date: "October 1, 2023",
     category: "Company News",
     excerpt: "FOCUS Co., Ltd. has formally established its headquarters in Chuo-ku, Osaka, positioning the company as a key trading bridge between Japan and global markets.",
     image: "/images/news/news-1-tokyo.jpg",
@@ -299,14 +299,14 @@ function Hero({ locale, setLocale }: { locale: Locale; setLocale: (l: Locale) =>
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-xs font-semibold uppercase tracking-[0.25em] text-white/50"
+              className="text-[22px] font-semibold uppercase tracking-[0.25em] text-cyan-300"
             >
               FOCUS Co., Ltd. — Global Trading
             </motion.p>
             <h1 className="max-w-4xl text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-lg md:text-6xl lg:text-7xl">
               {locale === "en" ? slide.tagline.en : slide.tagline.ja}
             </h1>
-            <p className="mt-1 text-sm text-white/40">
+            <p className="mt-1 text-base text-white/40">
               {locale === "en" ? slide.tagline.ja : slide.tagline.en}
             </p>
           </motion.div>
