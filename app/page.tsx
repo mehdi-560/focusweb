@@ -550,12 +550,10 @@ function CorporateProfilePreview({ locale }: { locale: Locale }) {
 /* ============================================================ */
 /* Section 5 — Newsroom Preview                                   */
 /* ============================================================ */
-
 function NewsroomPreview() {
   return (
     <section
-      className="px-6 py-24 md:px-12 lg:py-32"
-      style={{ background: "linear-gradient(180deg, #f0f7fc 0%, #fcfeff 100%)" }}
+      className="bg-surface-1 px-6 py-24 md:px-12 lg:py-32"
       aria-labelledby="news-heading"
     >
       <div className="mx-auto max-w-6xl">
@@ -567,7 +565,9 @@ function NewsroomPreview() {
           className="mb-12 flex items-end justify-between"
         >
           <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">ニュースルーム</p>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              ニュースルーム
+            </p>
             <h2 id="news-heading" className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Latest News
             </h2>
@@ -580,15 +580,15 @@ function NewsroomPreview() {
           </Link>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
           {newsArticles.map((article, index) => (
             <motion.article
               key={article.id}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group overflow-hidden rounded-2xl border border-muted/30 bg-white shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/30"
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="group overflow-hidden rounded-2xl border border-muted/30 bg-surface-2 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/30"
             >
               <div className="relative h-44 overflow-hidden">
                 <Image
@@ -596,7 +596,7 @@ function NewsroomPreview() {
                   alt={article.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 <span className="absolute top-3 left-3 rounded-full bg-primary px-2.5 py-1 text-xs font-semibold text-white">
@@ -608,10 +608,13 @@ function NewsroomPreview() {
                 <h3 className="text-sm font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
                   {article.title}
                 </h3>
-                <p className="mt-2 text-xs leading-relaxed text-muted line-clamp-2">{article.excerpt}</p>
+                <p className="mt-2 text-xs leading-relaxed text-muted line-clamp-2">
+                  {article.excerpt}
+                </p>
                 <Link
                   href={`/news-room/${article.slug}`}
-                  className="mt-4 block text-xs font-semibold text-primary hover:text-primary-bright transition-colors"
+                  className="mt-4 block text-xs font-semibold text-primary transition-colors hover:text-primary-bright"
+                  aria-label={`Read full article: ${article.title}`}
                 >
                   Read more →
                 </Link>
@@ -632,7 +635,6 @@ function NewsroomPreview() {
     </section>
   );
 }
-
 /* ============================================================ */
 /* Footer                                                         */
 /* ============================================================ */

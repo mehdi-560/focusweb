@@ -113,9 +113,9 @@ function ArticleCard({ article }: { article: (typeof articles)[0] }) {
           {article.excerpt}
         </p>
 
-        <div className="mt-5 flex items-center justify-between border-t border-[#b6bdc1]/20 pt-4">
+        <div className="mt-5 flex items-center justify-between border-t border-muted/20 pt-4">
           <Link
-            href={`/newsroom/${article.slug}`}
+            href={`/news-room/${article.slug}`}
             className="text-xs font-semibold text-[#0c71af] transition-colors hover:text-[#1096ea]"
             aria-label={`Read full article: ${article.title}`}
           >
@@ -160,7 +160,7 @@ export default function NewsroomPage() {
       </section>
 
       {/* Category filter — static for now */}
-      <section className="border-b border-[#b6bdc1]/20 bg-white px-6 py-4 md:px-12">
+      <section className="border-b border-muted/20 bg-white px-6 py-4 md:px-12">
         <div className="mx-auto flex max-w-6xl items-center gap-3 overflow-x-auto">
           {categories.map((cat, i) => (
             <span
@@ -168,7 +168,7 @@ export default function NewsroomPage() {
               className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${
                 i === 0
                   ? "bg-[#0c71af] text-white"
-                  : "border border-[#b6bdc1]/40 text-[#b6bdc1] hover:border-[#0c71af] hover:text-[#0c71af]"
+                  : "border border-muted/40 text-muted hover:border-primary hover:text-primary"
               }`}
             >
               {cat}

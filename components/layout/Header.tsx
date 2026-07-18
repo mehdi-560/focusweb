@@ -65,7 +65,7 @@ export default function Header() {
                 alt="FOCUS Co., Ltd."
                 width={120}
                 height={40}
-                className="h-auto w-[180px] md:w-[200px]"
+                className="h-auto w-[90px] md:w-[110px]"
                 style={{ filter: "brightness(0) invert(1)" }}
                 priority
               />
@@ -87,7 +87,7 @@ export default function Header() {
                   >
                     <Link href="/industries">
                       <motion.span
-                        className={`relative flex items-center gap-1 rounded-lg px-3 py-2 text-xl font-medium transition-colors cursor-pointer ${
+                        className={`relative flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors cursor-pointer ${
                           isActive ? "text-primary-bright" : "text-white/80 hover:text-white"
                         }`}
                         whileHover={{ backgroundColor: "rgba(255,255,255,0.07)" }}
@@ -145,7 +145,7 @@ export default function Header() {
               return (
                 <Link key={link.href} href={link.href}>
                   <motion.span
-                    className={`relative flex items-center rounded-lg px-3 py-2 text-base font-medium transition-colors cursor-pointer ${
+                    className={`relative flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors cursor-pointer ${
                       isActive ? "text-primary-bright" : "text-white/80 hover:text-white"
                     }`}
                     whileHover={{ backgroundColor: "rgba(255,255,255,0.07)" }}
@@ -166,7 +166,7 @@ export default function Header() {
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="ml-2">
               <Link
                 href="/contact"
-                className="rounded-lg bg-primary px-4 py-2 text-base font-semibold text-white transition-colors hover:bg-primary-bright"
+                className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-bright"
               >
                 Get in Touch
               </Link>
