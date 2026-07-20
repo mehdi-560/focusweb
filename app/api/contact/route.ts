@@ -160,7 +160,7 @@ Submitted via thefocus.jp contact form
   } catch (error) {
     console.error("Contact form error:", error);
     return NextResponse.json(
-      { error: "Something went wrong. Please try again later." },
+      { error: "Something went wrong. Please try again later Or email us at jamal@thefocus.jp" },
       { status: 500 }
     );
   }
