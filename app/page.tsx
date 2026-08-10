@@ -49,6 +49,7 @@ const industries = [
     nameJa: "自動車輸出",
     description: "Vehicles and logistics moving from Japan to global markets.",
     image: "/images/industries/automotive-export.jpg",
+    href: "/business/automotive-export",
   },
   {
     slug: "medical-equipment",
@@ -56,6 +57,7 @@ const industries = [
     nameJa: "医療機器",
     description: "Precision medical devices trusted across international healthcare systems.",
     image: "/images/industries/medical-equipment.jpg",
+    href: "/business/medical-equipment",
   },
   {
     slug: "stationery-consumer-goods",
@@ -63,6 +65,7 @@ const industries = [
     nameJa: "文具・消費財",
     description: "Premium Japanese craftsmanship in everyday consumer products.",
     image: "/images/industries/stationery-consumer-goods.jpg",
+    href: "/business/stationery-consumer-goods",
   },
   {
     slug: "fiber-textiles",
@@ -70,6 +73,7 @@ const industries = [
     nameJa: "繊維・テキスタイル",
     description: "Industrial-grade woven materials engineered for durability.",
     image: "/images/industries/fiber-textiles.jpg",
+    href: "/business/fiber-textiles",
   },
   {
     slug: "industrial-materials",
@@ -77,6 +81,15 @@ const industries = [
     nameJa: "産業資材",
     description: "Raw materials and manufacturing inputs for global industry.",
     image: "/images/industries/industrial-materials.jpg",
+    href: "/business/industrial-materials",
+  },
+  {
+    slug: "consultancy",
+    name: "B2B Research & Consultancy",
+    nameJa: "コンサルティング事業",
+    description: "Market intelligence, competitor teardowns, and business plans for companies entering or competing in international markets.",
+    image: "/images/industries/consultancy.jpg", // add an image or use a gradient fallback
+    href: "/business/consultancy",
   },
 ];
 
@@ -364,20 +377,29 @@ function BusinessGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
-              className={index === 4 ? "sm:col-span-2 lg:col-span-1" : ""}
             >
               <Link
-                href={`/industries/${industry.slug}`}
+                href={industry.href}
                 className="group relative flex h-72 flex-col justify-end overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl"
                 aria-label={`Learn more about ${industry.name}`}
               >
-                <Image
-                  src={industry.image}
-                  alt={industry.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
+                {industry.slug === "consultancy" ? (
+                  <div
+                    className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #0a1420 0%, #0c71af 60%, #1096ea 100%)",
+                    }}
+                  />
+                ) : (
+                  <Image
+                    src={industry.image}
+                    alt={industry.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300 group-hover:from-black/90" />
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 transition-all duration-300 group-hover:ring-primary-bright/60" />
                 <div className="relative z-10">
