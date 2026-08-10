@@ -49,7 +49,7 @@ const industries = [
     nameJa: "自動車輸出",
     description: "Vehicles and logistics moving from Japan to global markets.",
     image: "/images/industries/automotive-export.jpg",
-    href: "/business/automotive-export",
+    href: "/industries/automotive-export",
   },
   {
     slug: "medical-equipment",
@@ -57,7 +57,7 @@ const industries = [
     nameJa: "医療機器",
     description: "Precision medical devices trusted across international healthcare systems.",
     image: "/images/industries/medical-equipment.jpg",
-    href: "/business/medical-equipment",
+    href: "/industries/medical-equipment",
   },
   {
     slug: "stationery-consumer-goods",
@@ -65,7 +65,7 @@ const industries = [
     nameJa: "文具・消費財",
     description: "Premium Japanese craftsmanship in everyday consumer products.",
     image: "/images/industries/stationery-consumer-goods.jpg",
-    href: "/business/stationery-consumer-goods",
+    href: "/industries/stationery-consumer-goods",
   },
   {
     slug: "fiber-textiles",
@@ -73,7 +73,7 @@ const industries = [
     nameJa: "繊維・テキスタイル",
     description: "Industrial-grade woven materials engineered for durability.",
     image: "/images/industries/fiber-textiles.jpg",
-    href: "/business/fiber-textiles",
+    href: "/industries/fiber-textiles",
   },
   {
     slug: "industrial-materials",
@@ -81,15 +81,15 @@ const industries = [
     nameJa: "産業資材",
     description: "Raw materials and manufacturing inputs for global industry.",
     image: "/images/industries/industrial-materials.jpg",
-    href: "/business/industrial-materials",
+    href: "/industries/industrial-materials",
   },
   {
     slug: "consultancy",
     name: "B2B Research & Consultancy",
     nameJa: "コンサルティング事業",
     description: "Market intelligence, competitor teardowns, and business plans for companies entering or competing in international markets.",
-    image: "/images/industries/consultancy.jpg", // add an image or use a gradient fallback
-    href: "/business/consultancy",
+    image: "/images/industries/consultancy.jpg",
+    href: "/consultancy",
   },
 ];
 
@@ -98,16 +98,16 @@ const newsArticles = [
     id: 1,
     slug: "focus-expands-trading-network-dubai",
     title: "FOCUS Expands Trading Network with New Dubai Partnership",
-    date: "June 15, 2024",
+    date: "June 15, 2025",
     category: "Partnerships",
     excerpt: "FOCUS Co., Ltd. has established a new B2B trading partnership in Dubai, strengthening its Middle East distribution network.",
     image: "/images/news/news-2-dubai.jpg",
   },
   {
     id: 2,
-    slug: "japanese-automotive-export-record-2026",
-    title: "Japanese Automotive Exports Reach Record Volume in Q1 2026",
-    date: "May 20, 2026",
+    slug: "japanese-automotive-export-record-2025",
+    title: "Japanese Automotive Exports Reach Record Volume in Q1 2025",
+    date: "May 20, 2025",
     category: "Industry News",
     excerpt: "Japan's automotive export sector recorded its highest Q1 volume in five years, driven by strong demand in Middle East and South Asian markets.",
     image: "/images/news/news-3-automotive.jpg",
@@ -116,28 +116,33 @@ const newsArticles = [
     id: 3,
     slug: "focus-osaka-headquarters-established",
     title: "FOCUS Co., Ltd. Establishes Headquarters in Osaka, Japan",
-    date: "October 1, 2023",
+    date: "April 1, 2025",
     category: "Company News",
     excerpt: "FOCUS Co., Ltd. has formally established its headquarters in Chuo-ku, Osaka, positioning the company as a key trading bridge between Japan and global markets.",
     image: "/images/news/news-1-tokyo.jpg",
+  },
+  {
+    id: 4,
+    slug: "global-shipping-demand-surge-2025",
+    title: "Global Shipping Demand Surges as Asia-Pacific Trade Routes Expand",
+    date: "March 10, 2025",
+    category: "Industry News",
+    excerpt: "Asia-Pacific shipping lanes are experiencing increased freight volumes in 2025, creating favorable conditions for Japanese export trading companies.",
+    image: "/images/news/news-4-shipping.jpg",
   },
 ];
 
 const corporateProfile = [
   { label: "Company Name", labelJa: "会社名", value: "FOCUS Co., Ltd. (株式会社FOCUS)" },
   { label: "Representative Director", labelJa: "代表取締役", value: "Jamal Ahmad" },
-  { label: "Capital", labelJa: "資本金", value: "5,000,000 ¥" },
-  { label: "Established Year", labelJa: "設立", value: "2023" },
+  { label: "Capital", labelJa: "資本金", value: "¥5,000,000" },
+  { label: "Established", labelJa: "設立", value: "October 2023" },
   { label: "Headquarters", labelJa: "本社所在地", value: "Chuo-ku, Awaji-cho 3-chome 4-ban, 1-gou 212, Osaka 541-0047, Japan" },
+  { label: "Banking Partners", labelJa: "主要取引銀行", value: "[To be provided]" },
 ];
 
 /* ============================================================ */
-/* Animated FOCUS Logo                                            */
-/* ============================================================ */
-
-
-/* ============================================================ */
-/* Grid + Bubble Overlay (Hero background effect)                */
+/* Grid + Bubble Overlay                                          */
 /* ============================================================ */
 
 function HeroOverlay() {
@@ -151,7 +156,8 @@ function HeroOverlay() {
 
     let animId: number;
     const bubbles: {
-      x: number; y: number; r: number; vx: number; vy: number; alpha: number; life: number; maxLife: number;
+      x: number; y: number; r: number; vx: number; vy: number;
+      alpha: number; life: number; maxLife: number;
     }[] = [];
 
     function resize() {
@@ -179,7 +185,6 @@ function HeroOverlay() {
       if (!canvas || !ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Subtle grid
       ctx.strokeStyle = "rgba(255,255,255,0.06)";
       ctx.lineWidth = 0.5;
       const gridSize = 48;
@@ -190,16 +195,14 @@ function HeroOverlay() {
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
       }
 
-      // Spawn new bubbles
       if (Math.random() < 0.15) spawnBubble();
 
-      // Update + draw bubbles
-      for (let i = bubbles.length - 2; i >= 0; i--) {
+      for (let i = bubbles.length - 1; i >= 0; i--) {
         const b = bubbles[i];
         b.x += b.vx; b.y += b.vy; b.life++;
         const progress = b.life / b.maxLife;
-        b.alpha = progress < 0.5 ? progress / 0.5 : progress > 1 ? (1 - progress) / 0.5 : 1;
-        b.alpha *= 0.45;
+        b.alpha = progress < 0.2 ? progress / 0.2 : progress > 0.8 ? (1 - progress) / 0.2 : 1;
+        b.alpha *= 0.35;
 
         ctx.beginPath();
         ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
@@ -207,7 +210,6 @@ function HeroOverlay() {
         ctx.lineWidth = 0.8;
         ctx.stroke();
 
-        // Inner glint
         const glint = ctx.createRadialGradient(b.x - b.r * 0.3, b.y - b.r * 0.3, 0, b.x, b.y, b.r);
         glint.addColorStop(0, `rgba(255,255,255,${b.alpha * 0.6})`);
         glint.addColorStop(1, `rgba(16,150,234,${b.alpha * 0.1})`);
@@ -236,10 +238,6 @@ function HeroOverlay() {
 }
 
 /* ============================================================ */
-/* 3D Globe — Canvas-based, corporate feel                       */
-/* ============================================================ */
-
-/* ============================================================ */
 /* Section 1 — Hero                                               */
 /* ============================================================ */
 
@@ -257,7 +255,6 @@ function Hero({ locale, setLocale }: { locale: Locale; setLocale: (l: Locale) =>
 
   return (
     <section className="relative h-screen w-full overflow-hidden" aria-label="Hero slideshow">
-      {/* Images */}
       <AnimatePresence mode="sync">
         {heroSlides.map((s, index) =>
           index === activeSlide ? (
@@ -289,15 +286,9 @@ function Hero({ locale, setLocale }: { locale: Locale; setLocale: (l: Locale) =>
         )}
       </AnimatePresence>
 
-      {/* Dark overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/65 z-10" />
-
-      {/* Grid + bubbles overlay */}
       <HeroOverlay />
 
-      {/* Nav */}
-
-      {/* Tagline */}
       <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
         <AnimatePresence mode="wait">
           <motion.div
@@ -312,21 +303,20 @@ function Hero({ locale, setLocale }: { locale: Locale; setLocale: (l: Locale) =>
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-[22px] font-semibold uppercase tracking-[0.25em] text-cyan-300"
+              className="text-xs font-semibold uppercase tracking-[0.25em] text-white/50"
             >
               FOCUS Co., Ltd. — Global Trading
             </motion.p>
             <h1 className="max-w-4xl text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-lg md:text-6xl lg:text-7xl">
               {locale === "en" ? slide.tagline.en : slide.tagline.ja}
             </h1>
-            <p className="mt-1 text-base text-white/40">
+            <p className="mt-1 text-sm text-white/40">
               {locale === "en" ? slide.tagline.ja : slide.tagline.en}
             </p>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Slide indicators */}
       <div className="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3">
         {heroSlides.map((s, index) => (
           <button
@@ -387,8 +377,7 @@ function BusinessGrid() {
                   <div
                     className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
                     style={{
-                      background:
-                        "linear-gradient(135deg, #0a1420 0%, #0c71af 60%, #1096ea 100%)",
+                      background: "linear-gradient(135deg, #0a1420 0%, #0c71af 60%, #1096ea 100%)",
                     }}
                   />
                 ) : (
@@ -420,15 +409,15 @@ function BusinessGrid() {
 }
 
 /* ============================================================ */
-/* Section 3 — Global Network with 3D Globe                      */
+/* Section 3 — Global Network                                     */
 /* ============================================================ */
 
 function GlobalNetwork({ locale }: { locale: Locale }) {
   const networkNodes = [
-    { name: "Japan", nameJa: "日本", role: "Headquarters", roleJa: "本社" },
-    { name: "Dubai", nameJa: "ドバイ", role: "Regional Hub", roleJa: "地域拠点" },
-    { name: "Canada", nameJa: "カナダ", role: "North America", roleJa: "北米" },
-    { name: "Pakistan", nameJa: "パキスタン", role: "South Asia", roleJa: "南アジア" },
+    { name: "Japan",    nameJa: "日本",      role: "Headquarters", roleJa: "本社"     },
+    { name: "Dubai",   nameJa: "ドバイ",    role: "Regional Hub", roleJa: "地域拠点"  },
+    { name: "Canada",  nameJa: "カナダ",    role: "North America",roleJa: "北米"      },
+    { name: "Pakistan",nameJa: "パキスタン",role: "South Asia",   roleJa: "南アジア"  },
   ];
 
   return (
@@ -455,17 +444,15 @@ function GlobalNetwork({ locale }: { locale: Locale }) {
         </motion.div>
 
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Globe */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.8 }}
           >
-            <GlobeWrapper/>
+            <GlobeWrapper />
           </motion.div>
 
-          {/* Node list */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -548,22 +535,21 @@ function CorporateProfilePreview({ locale }: { locale: Locale }) {
               <dd className="text-sm font-semibold text-foreground sm:text-right">{row.value}</dd>
             </motion.div>
           ))}
-        </motion.dl> 
+        </motion.dl>
         <motion.div
-               initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.3 }}
-                 className="mt-8 text-center"
-                 >
-  <Link
-    href="/company"
-    className="inline-flex items-center gap-2 rounded-xl border border-primary px-6 py-3 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white"
-  >
-    Full Corporate Profile →
-  </Link>
-</motion.div>
-        
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="mt-8 text-center"
+        >
+          <Link
+            href="/company"
+            className="inline-flex items-center gap-2 rounded-xl border border-primary px-6 py-3 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white"
+          >
+            Full Corporate Profile →
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
@@ -572,12 +558,10 @@ function CorporateProfilePreview({ locale }: { locale: Locale }) {
 /* ============================================================ */
 /* Section 5 — Newsroom Preview                                   */
 /* ============================================================ */
+
 function NewsroomPreview() {
   return (
-    <section
-      className="bg-surface-1 px-6 py-24 md:px-12 lg:py-32"
-      aria-labelledby="news-heading"
-    >
+    <section className="bg-surface-1 px-6 py-24 md:px-12 lg:py-32" aria-labelledby="news-heading">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -587,9 +571,7 @@ function NewsroomPreview() {
           className="mb-12 flex items-end justify-between"
         >
           <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              ニュースルーム
-            </p>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">ニュースルーム</p>
             <h2 id="news-heading" className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Latest News
             </h2>
@@ -602,7 +584,7 @@ function NewsroomPreview() {
           </Link>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {newsArticles.map((article, index) => (
             <motion.article
               key={article.id}
@@ -630,9 +612,7 @@ function NewsroomPreview() {
                 <h3 className="text-sm font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
                   {article.title}
                 </h3>
-                <p className="mt-2 text-xs leading-relaxed text-muted line-clamp-2">
-                  {article.excerpt}
-                </p>
+                <p className="mt-2 text-xs leading-relaxed text-muted line-clamp-2">{article.excerpt}</p>
                 <Link
                   href={`/news-room/${article.slug}`}
                   className="mt-4 block text-xs font-semibold text-primary transition-colors hover:text-primary-bright"
@@ -646,10 +626,7 @@ function NewsroomPreview() {
         </div>
 
         <div className="mt-8 text-center md:hidden">
-          <Link
-            href="/news-room"
-            className="text-sm font-semibold text-primary transition-colors hover:text-primary-bright"
-          >
+          <Link href="/news-room" className="text-sm font-semibold text-primary transition-colors hover:text-primary-bright">
             View all news →
           </Link>
         </div>
@@ -657,10 +634,6 @@ function NewsroomPreview() {
     </section>
   );
 }
-/* ============================================================ */
-/* Footer                                                         */
-/* ============================================================ */
-
 
 /* ============================================================ */
 /* Homepage                                                        */
