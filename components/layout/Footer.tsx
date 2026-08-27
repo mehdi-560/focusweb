@@ -31,8 +31,7 @@ export default function Footer() {
           Ready to Work with FOCUS?
         </h2>
         <p className="mx-auto mb-8 max-w-md text-sm leading-relaxed text-white/55">
-          We welcome B2B inquiries from distributors, manufacturers, and
-          institutions across all industries we serve.
+          We welcome research and consultancy inquiries from companies worldwide..
         </p>
         <Link
           href="/contact"

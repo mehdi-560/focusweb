@@ -134,11 +134,10 @@ const newsArticles = [
 
 const corporateProfile = [
   { label: "Company Name", labelJa: "会社名", value: "FOCUS Co., Ltd. (株式会社FOCUS)" },
-  { label: "Representative Director", labelJa: "代表取締役", value: "Jamal Ahmad" },
+  { label: "Representative Director", labelJa: "代表取締役", value: "Jamal Ahmed" },
   { label: "Capital", labelJa: "資本金", value: "¥5,000,000" },
   { label: "Established", labelJa: "設立", value: "October 2023" },
   { label: "Headquarters", labelJa: "本社所在地", value: "Chuo-ku, Awaji-cho 3-chome 4-ban, 1-gou 212, Osaka 541-0047, Japan" },
-  { label: "Banking Partners", labelJa: "主要取引銀行", value: "[To be provided]" },
 ];
 
 /* ============================================================ */
