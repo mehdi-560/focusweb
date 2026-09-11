@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Corporate Profile | FOCUS Co., Ltd.",
   description:
-    "FOCUS Co., Ltd. — Japan-based international trading company established in October 2023 by Representative Director Jamal Ahmad. Headquartered in Osaka, Japan. Exporting automotive, medical, textile, stationery, and industrial materials globally.",
+    "FOCUS Co., Ltd. — Japan-based international trading company established in October 2023 by Representative Director Jamal Ahmed. Headquartered in Osaka, Japan. Exporting automotive, medical, textile, stationery, and industrial materials globally.",
   openGraph: {
     title: "Corporate Profile | FOCUS Co., Ltd.",
     description:
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const profileRows = [
   { label: "Company Name",            labelJa: "会社名",         value: "FOCUS Co., Ltd." },
   { label: "Japanese Name",           labelJa: "日本語社名",     value: "株式会社FOCUS" },
-  { label: "Representative Director", labelJa: "代表取締役",     value: "Jamal Ahmad" },
+  { label: "Representative Director", labelJa: "代表取締役",     value: "Jamal Ahmed" },
   { label: "Established",             labelJa: "設立",           value: "October 2023" },
   { label: "Capital",                 labelJa: "資本金",         value: "¥5,000,000" },
   {
@@ -50,7 +50,7 @@ const jsonLd = {
   foundingDate: "2023-10",
   founder: {
     "@type": "Person",
-    name: "Jamal Ahmad",
+    name: "Jamal Ahmed",
     jobTitle: "Representative Director",
   },
   address: {
@@ -150,7 +150,7 @@ export default function CompanyPage() {
             <div className="space-y-6 text-sm leading-relaxed text-muted">
               <p>
                 FOCUS Co., Ltd. was established in October 2023 by Representative Director
-                Jamal Ahmad, with a stated capital of ¥5,000,000, and is headquartered in
+                Jamal Ahmed, with a stated capital of ¥5,000,000, and is headquartered in
                 Chuo-ku, Osaka — one of Japan's most historically significant commercial
                 and trading districts. The company was incorporated with a clear strategic
                 mandate: to serve as a trusted and efficient intermediary between Japan's
