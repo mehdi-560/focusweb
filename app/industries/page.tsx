@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Our Industries | FOCUS Co., Ltd.",
     description:
       "Five export industries. One trusted Japanese trading partner. Automotive, Medical, Stationery, Textiles, and Industrial Materials.",
-    url: "https://www.focus-trading.com/industries",
+    url: "https://www.thefocus.jp/industries",
   },
 };
 

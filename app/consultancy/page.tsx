@@ -1,14 +1,17 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 
+
 export const metadata: Metadata = {
-  title: "B2B Research & Consultancy | FOCUS Co., Ltd.",
+  title: "Market Research & Competitor Analysis",
   description:
-    "Market intelligence, competitor teardowns, B2B lead research, and business plans from Osaka, Japan — for clients worldwide. Download sample work and request a quote.",
+    "Market research, competitor analysis and business planning to support informed decisions.",
+  alternates: { canonical: "/consultancy" },
   openGraph: {
-    title: "B2B Research & Consultancy | FOCUS Co., Ltd.",
+    title: "Market Research & Competitor Analysis | FOCUS Co., Ltd.",
     description:
-      "Market intelligence, competitor teardowns, B2B lead research, and business plans from Osaka, Japan — for clients worldwide.",
+      "Market research and competitor analysis from FOCUS.",
     url: "https://www.thefocus.jp/consultancy",
   },
 };
@@ -19,35 +22,30 @@ const services = [
     name: "Market & Competitor Intelligence Brief",
     description:
       "Market sizing, demand drivers, customer segments, competitive landscape, and prioritized recommendations. Conclusion-first format, ~20 pages.",
-    price: "From $450",
   },
   {
     icon: "🔍",
     name: "Competitor Teardown",
     description:
       "Deep profile of 2–5 competitors: positioning, pricing, acquisition channels, and each one's exploitable weakness.",
-    price: "From $250",
   },
   {
     icon: "📋",
     name: "B2B Lead Research",
     description:
       "Qualified prospect lists with decision-makers, verified business emails, and documented public sources. GDPR-aware methodology.",
-    price: "From $200",
   },
   {
     icon: "📈",
     name: "Business Plan & Financial Model",
     description:
       "Investor- and lender-ready business plans with a companion financial model and the editable spreadsheet behind every figure.",
-    price: "From $750",
   },
   {
     icon: "🇯🇵",
     name: "Japan Market Entry Advisory",
     description:
       "Market research, partner identification, and regulatory landscape for companies entering Japan — backed by our own operating trading business.",
-    price: "Custom quote",
   },
 ];
 
@@ -56,7 +54,7 @@ const steps = [
     number: "01",
     title: "Send the brief",
     description:
-      "Fill the 5-minute intake form. We confirm scope and fixed price within one business day.",
+      "Fill the 5-minute intake form. Our sales representative will be in touch within 24 hours.",
   },
   {
     number: "02",
@@ -146,50 +144,41 @@ export default function ConsultancyPage() {
     <main className="min-h-screen bg-background">
 
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="relative px-6 py-32 text-center md:px-12 bg-dark">
+      <section className="consultancy-hero relative isolate overflow-hidden px-6 py-28 text-center md:px-12 md:py-40">
+        <Image src="/images/news/news-2-dubai.jpg" alt="" fill priority sizes="100vw" className="-z-20 object-cover" />
+        <div className="absolute inset-0 -z-10 bg-black/65" />
         <nav
-          className="absolute top-6 left-6 flex items-center gap-2 text-xs text-white/50"
+          className="absolute top-6 left-6 flex items-center gap-2 text-sm text-white/85"
           aria-label="Breadcrumb"
         >
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <Link href="/" className="hover:text-primary transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-white/80">Consultancy</span>
+          <span className="text-white">Market Research</span>
         </nav>
-        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-primary-bright">
-          コンサルティング事業
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-white">
+          市場調査・競合分析
         </p>
-        <h1 className="mx-auto max-w-3xl text-4xl font-bold tracking-tight text-white md:text-6xl">
-          Research that decisions can stand on.
+        <h1 className="mx-auto max-w-4xl text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl">
+          Clearer decisions.<br /><span className="text-white">Evidence that moves you forward.</span>
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/60">
-          FOCUS Co., Ltd. produces market intelligence, competitor teardowns, B2B lead research,
-          and investor-grade business plans — from Osaka, for clients in Japan and worldwide.
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">
+          Market research, competitor analysis and business planning.
+          A clear view of markets, alternatives and opportunities for your next decision.
         </p>
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <a
-            href="#samples"
-            className="rounded-xl bg-primary-bright px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary"
-          >
-            See sample work →
-          </a>
-          <Link
-            href="/contact"
-            className="rounded-xl border border-white/20 px-8 py-3.5 text-sm font-semibold text-white/80 transition-colors hover:border-white hover:text-white"
-          >
-            Request a quote
-          </Link>
-        </div>
+        <div className="mt-8"><Link href="/contact#inquiry" className="inline-flex rounded-lg bg-primary px-8 py-3.5 font-semibold text-white">Get a quote</Link><p className="mt-4 text-white/90">Our sales representative will be in touch within 24 hours.</p></div>
       </section>
 
+
+
       {/* ── Services ─────────────────────────────────────── */}
-      <section className="px-6 py-24 md:px-12 lg:py-32">
+      <section id="research" className="scroll-mt-28 px-6 py-16 md:px-12 lg:py-20">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-16 text-center">
+          <div className="mb-10 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               サービス内容
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              What We Deliver
+              Market Research & Competitor Analysis
             </h2>
           </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -203,7 +192,7 @@ export default function ConsultancyPage() {
                 <span className="text-3xl">{service.icon}</span>
                 <h3 className="mt-4 text-base font-bold text-foreground">{service.name}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{service.description}</p>
-                <p className="mt-4 text-sm font-semibold text-primary">{service.price}</p>
+                <Link href="/contact#inquiry" className="mt-5 inline-flex rounded-lg bg-primary px-5 py-3 font-semibold text-white">Get a quote</Link>
               </div>
             ))}
           </div>
@@ -211,9 +200,9 @@ export default function ConsultancyPage() {
       </section>
 
       {/* ── How it works ─────────────────────────────────── */}
-      <section className="bg-surface-1 px-6 py-24 md:px-12 lg:py-32">
+      <section className="bg-surface-1 px-6 py-16 md:px-12 lg:py-20">
         <div className="mx-auto max-w-4xl">
-          <div className="mb-16 text-center">
+          <div className="mb-10 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               プロセス
             </p>
@@ -238,7 +227,7 @@ export default function ConsultancyPage() {
       </section>
 
       {/* ── Quality standards ────────────────────────────── */}
-      <section className="px-6 py-24 md:px-12">
+      <section className="px-6 py-16 md:px-12">
         <div className="mx-auto max-w-3xl">
           <div className="mb-10 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
@@ -260,7 +249,7 @@ export default function ConsultancyPage() {
       </section>
 
       {/* ── Sample Work ──────────────────────────────────── */}
-      <section id="samples" className="bg-surface-1 px-6 py-24 md:px-12 lg:py-32">
+      <section id="samples" className="scroll-mt-28 bg-surface-1 px-6 py-16 md:px-12 lg:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="mb-4 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
@@ -338,21 +327,21 @@ export default function ConsultancyPage() {
       </section>
 
       {/* ── Final CTA ────────────────────────────────────── */}
-      <section className="px-6 py-24 text-center md:px-12">
+      <section className="px-6 py-16 text-center md:px-12">
         <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
           Tell us the decision you&apos;re facing.
           <br />
           We&apos;ll research it.
         </h2>
         <p className="mx-auto mb-8 max-w-md text-sm leading-relaxed text-muted">
-          Fixed price. Fixed scope. Delivered in 3–7 days.
+          Our sales representative will be in touch within 24 hours.
         </p>
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link
             href="/contact"
             className="rounded-xl bg-primary px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary-bright"
           >
-            Request a quote →
+            Get a quote
           </Link>
           <a
             href="#samples"

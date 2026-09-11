@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Fiber & Textiles | FOCUS Co., Ltd.",
     description:
       "Japanese industrial fiber and textile materials for global B2B manufacturers and distributors.",
-    url: "https://www.focus-trading.com/industries/fiber-textiles",
+    url: "https://www.thefocus.jp/industries/fiber-textiles",
     images: [{ url: "/images/industries/fiber-textiles.jpg" }],
   },
 };

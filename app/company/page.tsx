@@ -5,12 +5,12 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Corporate Profile | FOCUS Co., Ltd.",
   description:
-    "FOCUS Co., Ltd. — Japan-based international trading company established in October 2023 by Representative Director Jamal Ahmad. Headquartered in Osaka, Japan. Exporting automotive, medical, textile, stationery, and industrial materials globally.",
+    "FOCUS Co., Ltd. — Japan-based international trading company established in October 2023 by Representative Director Jamal Ahmed. Headquartered in Osaka, Japan. Exporting automotive, medical, textile, stationery, and industrial materials globally.",
   openGraph: {
     title: "Corporate Profile | FOCUS Co., Ltd.",
     description:
       "Corporate profile and company history of FOCUS Co., Ltd., a Japan-based general trading company established in Osaka in 2023.",
-    url: "https://www.focus-trading.com/company",
+    url: "https://www.thefocus.jp/company",
   },
 };
 
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const profileRows = [
   { label: "Company Name",            labelJa: "会社名",         value: "FOCUS Co., Ltd." },
   { label: "Japanese Name",           labelJa: "日本語社名",     value: "株式会社FOCUS" },
-  { label: "Representative Director", labelJa: "代表取締役",     value: "Jamal Ahmad" },
+  { label: "Representative Director", labelJa: "代表取締役",     value: "Jamal Ahmed" },
   { label: "Established",             labelJa: "設立",           value: "October 2023" },
   { label: "Capital",                 labelJa: "資本金",         value: "¥5,000,000" },
   {
@@ -45,12 +45,12 @@ const jsonLd = {
   "@type": "Organization",
   name: "FOCUS Co., Ltd.",
   alternateName: "株式会社FOCUS",
-  url: "https://www.focus-trading.com",
+  url: "https://www.thefocus.jp",
   email: "jamal@thefocus.jp",
   foundingDate: "2023-10",
   founder: {
     "@type": "Person",
-    name: "Jamal Ahmad",
+    name: "Jamal Ahmed",
     jobTitle: "Representative Director",
   },
   address: {
@@ -75,7 +75,7 @@ export default function CompanyPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className="min-h-screen bg-background">
+      <main className="min-h-screen bg-background"><nav className="bg-surface-1 px-6 py-4 text-center" aria-label="Company information"><Link href="/company" className="mr-8 font-semibold text-primary">Company profile</Link><Link href="/news-room" className="font-semibold text-primary">Newsroom →</Link></nav>
 
         {/* Hero */}
         <section className="relative px-6 py-28 text-center md:px-12 bg-dark">
@@ -150,7 +150,7 @@ export default function CompanyPage() {
             <div className="space-y-6 text-sm leading-relaxed text-muted">
               <p>
                 FOCUS Co., Ltd. was established in October 2023 by Representative Director
-                Jamal Ahmad, with a stated capital of ¥5,000,000, and is headquartered in
+                Jamal Ahmed, with a stated capital of ¥5,000,000, and is headquartered in
                 Chuo-ku, Osaka — one of Japan's most historically significant commercial
                 and trading districts. The company was incorporated with a clear strategic
                 mandate: to serve as a trusted and efficient intermediary between Japan's

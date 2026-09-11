@@ -1,3 +1,6 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,6 +13,9 @@ const industries = [
 ];
 
 const companyLinks = [
+  { href: "/trading", label: "Trading Business" },
+  { href: "/consultancy", label: "Market Research" },
+  { href: "/digital-solutions", label: "Digital Solutions" },
   { href: "/industries", label: "Our Industries" },
   { href: "/company",    label: "Corporate Profile" },
   { href: "/news-room",  label: "Newsroom"       },
@@ -17,27 +23,31 @@ const companyLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  const ja = pathname === "/ja" || pathname.startsWith("/ja/");
+  const url = (path: string) => ja ? "/ja" + path : path;
+  const labels: Record<string,string> = {"Automotive Export":"自動車輸出", "Medical Equipment":"医療機器", "Stationery & Consumer Goods":"文具・消費財", "Fiber & Textiles":"繊維・テキスタイル", "Industrial Materials":"産業資材", "Trading Business":"貿易事業", "Market Research":"市場調査・競合分析", "Digital Solutions":"デジタルソリューション", "Our Industries":"取扱分野", "Corporate Profile":"会社概要", Newsroom:"ニュース", Contact:"お問い合わせ"};
   return (
     <footer
       className="text-white"
-      style={{ background: "linear-gradient(135deg, #0a1420 0%, #0c2a40 100%)" }}
+      style={{ background: "linear-gradient(120deg, #064e73 0%, #0875a8 100%)" }}
     >
       {/* CTA band */}
       <div className="border-b border-white/8 px-6 py-16 text-center md:px-12">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-bright">
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-white">
           お問い合わせ
         </p>
         <h2 className="mb-4 text-2xl font-bold tracking-tight md:text-3xl">
-          Ready to Work with FOCUS?
+          {ja ? "FOCUSにご相談ください" : "Ready to Work with FOCUS?"}
         </h2>
-        <p className="mx-auto mb-8 max-w-md text-sm leading-relaxed text-white/55">
-          We welcome research and consultancy inquiries from companies worldwide..
+        <p className="mx-auto mb-8 max-w-md text-sm leading-relaxed text-white/85">
+          {ja ? "調達・貿易、リサーチ、デジタル商品のご相談を承ります。" : "Tell us about your trading, research or digital product needs."}
         </p>
         <Link
-          href="/contact"
-          className="inline-flex items-center gap-2 rounded-xl bg-primary-bright px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-primary hover:shadow-lg"
+          href={url("/contact")}
+          className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3.5 text-sm font-semibold text-primary transition-all hover:bg-white/90 hover:shadow-lg"
         >
-          Contact Us →
+          {ja ? "お問い合わせ →" : "Contact Us \u2192"}
         </Link>
       </div>
 
@@ -47,33 +57,27 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <Image
-              src="/images/focus_logo.png"
-              alt="FOCUS Co., Ltd."
-              width={110}
-              height={36}
-              className="h-auto w-[100px] opacity-90 mb-4"
-              style={{ filter: "brightness(0) invert(1)" }}
-            />
-            <p className="text-xs leading-relaxed text-white/40">
-              Japan-based global trading company connecting Japanese manufacturing
-              excellence with international markets.
+            <div className="brand-logo mb-4">
+              <Image src="/images/focus_logo.png" alt="FOCUS Co., Ltd." fill sizes="140px" />
+            </div>
+            <p className="text-sm leading-relaxed text-white/80">
+              {ja ? "調達・貿易、ビジネスリサーチ、デジタル商品の企画・制作。大阪を拠点に、国内外の企業やパートナーと取り組みます。" : "Trading, research and digital product development. Based in Osaka, Japan, working with businesses and partners worldwide."}
             </p>
           </div>
 
           {/* Industries */}
           <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/40">
-              Industries
+            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-white/80">
+              {ja ? "取扱分野" : "Industries"}
             </p>
             <ul className="space-y-2.5">
               {industries.map((ind) => (
                 <li key={ind.href}>
                   <Link
-                    href={ind.href}
-                    className="text-xs text-white/60 transition-colors hover:text-white"
+                    href={url(ind.href)}
+                    className="text-sm text-white/85 transition-colors hover:text-white"
                   >
-                    {ind.label}
+                    {ja ? labels[ind.label] : ind.label}
                   </Link>
                 </li>
               ))}
@@ -82,17 +86,17 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/40">
-              Company
+            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-white/80">
+              {ja ? "会社情報" : "Company"}
             </p>
             <ul className="space-y-2.5">
               {companyLinks.map((link) => (
                 <li key={link.href}>
                   <Link
-                    href={link.href}
-                    className="text-xs text-white/60 transition-colors hover:text-white"
+                    href={url(link.href)}
+                    className="text-sm text-white/85 transition-colors hover:text-white"
                   >
-                    {link.label}
+                    {ja ? labels[link.label] : link.label}
                   </Link>
                 </li>
               ))}
@@ -101,20 +105,18 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/40">
-              Contact
+            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-white/80">
+              {ja ? "お問い合わせ" : "Contact"}
             </p>
             <address className="not-italic space-y-2">
-              <p className="text-xs leading-relaxed text-white/60">
-                Chuo-ku, Awaji-cho 3-chome 4-ban,<br />
-                1-gou 212, Osaka 541-0047,<br />
-                Japan
+              <p className="text-sm leading-relaxed text-white/85">
+                {ja ? <>〒541-0047<br />大阪府大阪市中央区淡路町<br />3丁目4番1号 212</> : <>Chuo-ku, Awaji-cho 3-chome 4-ban,<br />1-gou 212, Osaka 541-0047,<br />Japan</>}
               </p>
               <a
-                href="mailto:jamal@thefocus.jp"
-                className="block text-xs text-primary-bright hover:text-secondary transition-colors"
+                href="mailto:sales@thefocus.jp"
+                className="block text-sm text-white hover:text-secondary transition-colors"
               >
-                jamal@thefocus.jp
+                sales@thefocus.jp
               </a>
             </address>
           </div>
@@ -122,10 +124,10 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col gap-2 border-t border-white/8 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-white/25">
+          <p className="text-sm text-white/75">
             © {new Date().getFullYear()} FOCUS Co., Ltd. All rights reserved.
           </p>
-          <p className="text-xs text-white/20">Osaka, Japan · 株式会社FOCUS</p>
+          <p className="text-sm text-white/75">Osaka, Japan · 株式会社FOCUS</p>
         </div>
       </div>
     </footer>
