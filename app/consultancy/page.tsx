@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 import DigitalProducts from "@/components/DigitalProducts";
@@ -5,7 +6,7 @@ import DigitalProducts from "@/components/DigitalProducts";
 export const metadata: Metadata = {
   title: "Research, Consultancy & Digital Products",
   description:
-    "Business research, consultancy and tailored digital product development from Osaka, Japan. Practical insight and useful tools for businesses, educators and creators.",
+    "Business research, consultancy and digital solutions from Osaka, Japan. Practical insight and useful tools for businesses, educators and creators.",
   alternates: { canonical: "/consultancy" },
   openGraph: {
     title: "Research, Consultancy & Digital Products | FOCUS Co., Ltd.",
@@ -148,23 +149,25 @@ export default function ConsultancyPage() {
     <main className="min-h-screen bg-background">
 
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="consultancy-hero relative px-6 py-24 text-center md:px-12 md:py-28">
+      <section className="consultancy-hero relative isolate overflow-hidden px-6 py-28 text-center md:px-12 md:py-40">
+        <Image src="/images/news/news-2-dubai.jpg" alt="" fill priority sizes="100vw" className="-z-20 object-cover" />
+        <div className="absolute inset-0 -z-10 bg-black/65" />
         <nav
-          className="absolute top-6 left-6 flex items-center gap-2 text-sm text-muted"
+          className="absolute top-6 left-6 flex items-center gap-2 text-sm text-white/85"
           aria-label="Breadcrumb"
         >
           <Link href="/" className="hover:text-primary transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-primary">Consultancy</span>
+          <span className="text-white">Consultancy</span>
         </nav>
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-white">
           コンサルティング事業
         </p>
-        <h1 className="mx-auto max-w-4xl text-4xl font-bold leading-tight tracking-tight text-foreground md:text-6xl">
-          Clearer decisions.<br /><span className="text-primary">Ideas made useful.</span>
+        <h1 className="mx-auto max-w-4xl text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl">
+          Clearer decisions.<br /><span className="text-white">Ideas made useful.</span>
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
-          Business research, planning and digital product development from Osaka, Japan.
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">
+          Business research, planning and digital solutions from Osaka, Japan.
           We turn complex information and practical needs into clear, usable work.
         </p>
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
@@ -172,11 +175,11 @@ export default function ConsultancyPage() {
             href="#digital-products"
             className="rounded-xl bg-primary px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
           >
-            Digital product development →
+            Digital solutions →
           </a>
           <Link
             href="#research"
-            className="rounded-xl border border-primary/30 bg-white px-8 py-3.5 text-sm font-semibold text-primary transition-colors hover:border-primary"
+            className="rounded-xl border border-white/40 bg-white px-8 py-3.5 text-sm font-semibold text-primary transition-colors hover:border-primary"
           >
             Research & consultancy
           </Link>

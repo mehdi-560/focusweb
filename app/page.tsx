@@ -19,7 +19,7 @@ const divisions = [
   {
     href: "/consultancy", label: "Consultancy", japanese: "コンサルティング事業",
     image: "/images/industries/consultancy.jpg", alt: "Business research documents under review",
-    description: "Research for clearer business decisions. Digital products designed around the people who use them.",
+    description: "Business research for clearer decisions. Digital solutions for work, learning and creative life.",
     detail: "Market research · Business planning · Digital products",
     action: "Explore our consultancy",
   },
@@ -28,17 +28,17 @@ const divisions = [
 export default function HomePage() {
   return (
     <main>
-      <section className="division-gateway px-6 pb-16 pt-14 md:px-12 md:pb-20 md:pt-20" aria-labelledby="home-heading">
+      <section className="relative flex min-h-[65svh] items-center overflow-hidden px-6 py-24 text-white md:min-h-[75vh] md:px-12" aria-labelledby="home-heading">
+        <Image src="/images/hero/slide-1-port.png" alt="Container ship at an international port" fill priority sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/15" />
+        <div className="relative mx-auto w-full max-w-6xl"><p className="mb-5 text-sm font-semibold tracking-[.18em]">FOCUS CO., LTD.</p><h1 id="home-heading" className="max-w-4xl text-4xl font-bold leading-tight md:text-7xl">What you need.<br />Delivered with focus.</h1><p className="mt-7 max-w-xl text-lg text-white/90">International trade, business insight and purposeful digital solutions.</p></div>
+      </section>
+      <section className="division-gateway px-6 py-16 md:px-12 md:py-20" aria-label="Our divisions">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-10 max-w-3xl">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary">FOCUS Co., Ltd. · Osaka, Japan</p>
-            <h1 id="home-heading" className="text-4xl font-bold leading-[1.12] tracking-tight text-foreground md:text-6xl">What you need.<br /><span className="text-primary">Delivered with focus.</span></h1>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg">International trade, business insight and purposeful digital products. Two divisions, one FOCUS.</p>
-          </div>
           <div className="grid gap-6 md:grid-cols-2">
             {divisions.map((division) => (
               <Link key={division.href} href={division.href} className="division-card group flex flex-col overflow-hidden rounded-2xl border border-primary/15 bg-white shadow-sm transition-shadow hover:shadow-xl">
-                <div className="relative h-44 overflow-hidden sm:h-52 lg:h-60">
+                <div className="relative h-72 overflow-hidden sm:h-80 lg:h-96">
                   <Image src={division.image} alt={division.alt} fill priority sizes="(max-width: 767px) 100vw, 50vw" className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-105" />
                   <div className="absolute inset-x-0 bottom-0 h-1 bg-primary-bright" />
                 </div>
