@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Newsroom | FOCUS Co., Ltd.",
     description:
       "Latest news and announcements from FOCUS Co., Ltd., Japan-based global trading company.",
-    url: "https://www.focus-trading.com/newsroom",
+    url: "https://www.thefocus.jp/newsroom",
   },
 };
 

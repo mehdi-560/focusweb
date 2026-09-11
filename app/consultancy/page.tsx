@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import DigitalProducts from "@/components/DigitalProducts";
 
 export const metadata: Metadata = {
-  title: "B2B Research & Consultancy | FOCUS Co., Ltd.",
+  title: "Research, Consultancy & Digital Products",
   description:
-    "Market intelligence, competitor teardowns, B2B lead research, and business plans from Osaka, Japan — for clients worldwide. Download sample work and request a quote.",
+    "Business research, consultancy and tailored digital product development from Osaka, Japan. Practical insight and useful tools for businesses, educators and creators.",
+  alternates: { canonical: "/consultancy" },
   openGraph: {
-    title: "B2B Research & Consultancy | FOCUS Co., Ltd.",
+    title: "Research, Consultancy & Digital Products | FOCUS Co., Ltd.",
     description:
-      "Market intelligence, competitor teardowns, B2B lead research, and business plans from Osaka, Japan — for clients worldwide.",
+      "Practical business research and digital products designed around the people who use them. Based in Osaka, working internationally.",
     url: "https://www.thefocus.jp/consultancy",
   },
 };
@@ -146,50 +148,52 @@ export default function ConsultancyPage() {
     <main className="min-h-screen bg-background">
 
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="relative px-6 py-32 text-center md:px-12 bg-dark">
+      <section className="consultancy-hero relative px-6 py-24 text-center md:px-12 md:py-28">
         <nav
-          className="absolute top-6 left-6 flex items-center gap-2 text-xs text-white/50"
+          className="absolute top-6 left-6 flex items-center gap-2 text-sm text-muted"
           aria-label="Breadcrumb"
         >
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <Link href="/" className="hover:text-primary transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-white/80">Consultancy</span>
+          <span className="text-primary">Consultancy</span>
         </nav>
-        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-primary-bright">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
           コンサルティング事業
         </p>
-        <h1 className="mx-auto max-w-3xl text-4xl font-bold tracking-tight text-white md:text-6xl">
-          Research that decisions can stand on.
+        <h1 className="mx-auto max-w-4xl text-4xl font-bold leading-tight tracking-tight text-foreground md:text-6xl">
+          Clearer decisions.<br /><span className="text-primary">Ideas made useful.</span>
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/60">
-          FOCUS Co., Ltd. produces market intelligence, competitor teardowns, B2B lead research,
-          and investor-grade business plans — from Osaka, for clients in Japan and worldwide.
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
+          Business research, planning and digital product development from Osaka, Japan.
+          We turn complex information and practical needs into clear, usable work.
         </p>
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <a
-            href="#samples"
-            className="rounded-xl bg-primary-bright px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary"
+            href="#digital-products"
+            className="rounded-xl bg-primary px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
           >
-            See sample work →
+            Digital product development →
           </a>
           <Link
-            href="/contact"
-            className="rounded-xl border border-white/20 px-8 py-3.5 text-sm font-semibold text-white/80 transition-colors hover:border-white hover:text-white"
+            href="#research"
+            className="rounded-xl border border-primary/30 bg-white px-8 py-3.5 text-sm font-semibold text-primary transition-colors hover:border-primary"
           >
-            Request a quote
+            Research & consultancy
           </Link>
         </div>
       </section>
 
+      <DigitalProducts />
+
       {/* ── Services ─────────────────────────────────────── */}
-      <section className="px-6 py-24 md:px-12 lg:py-32">
+      <section id="research" className="scroll-mt-28 px-6 py-24 md:px-12 lg:py-32">
         <div className="mx-auto max-w-6xl">
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               サービス内容
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              What We Deliver
+              Research & Consultancy
             </h2>
           </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -260,7 +264,7 @@ export default function ConsultancyPage() {
       </section>
 
       {/* ── Sample Work ──────────────────────────────────── */}
-      <section id="samples" className="bg-surface-1 px-6 py-24 md:px-12 lg:py-32">
+      <section id="samples" className="scroll-mt-28 bg-surface-1 px-6 py-24 md:px-12 lg:py-32">
         <div className="mx-auto max-w-6xl">
           <div className="mb-4 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">

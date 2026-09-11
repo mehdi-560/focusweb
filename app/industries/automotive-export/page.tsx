@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Automotive Export | FOCUS Co., Ltd.",
     description: "Exporting Japanese vehicles and automotive parts to global markets.",
-    url: "https://www.focus-trading.com/industries/automotive-export",
+    url: "https://www.thefocus.jp/industries/automotive-export",
     images: [{ url: "/images/industries/automotive-export.jpg" }],
   },
 };

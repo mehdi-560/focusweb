@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Industrial Materials | FOCUS Co., Ltd.",
     description:
       "Japanese industrial materials, steel, and manufacturing inputs for global B2B buyers.",
-    url: "https://www.focus-trading.com/industries/industrial-materials",
+    url: "https://www.thefocus.jp/industries/industrial-materials",
     images: [{ url: "/images/industries/industrial-materials.jpg" }],
   },
 };

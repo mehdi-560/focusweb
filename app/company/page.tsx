@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "Corporate Profile | FOCUS Co., Ltd.",
     description:
       "Corporate profile and company history of FOCUS Co., Ltd., a Japan-based general trading company established in Osaka in 2023.",
-    url: "https://www.focus-trading.com/company",
+    url: "https://www.thefocus.jp/company",
   },
 };
 
@@ -45,7 +45,7 @@ const jsonLd = {
   "@type": "Organization",
   name: "FOCUS Co., Ltd.",
   alternateName: "株式会社FOCUS",
-  url: "https://www.focus-trading.com",
+  url: "https://www.thefocus.jp",
   email: "jamal@thefocus.jp",
   foundingDate: "2023-10",
   founder: {

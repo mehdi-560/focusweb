@@ -134,14 +134,14 @@ function ContactForm() {
 
       <div>
         <label htmlFor="contact-industry" className="mb-1.5 block text-xs font-medium text-[#0a1420]">
-          Industry of Interest
+          Area of Interest
         </label>
         <input
           id="contact-industry"
           name="industry"
           type="text"
           className={inputClass}
-          placeholder="e.g. Automotive Export, Medical Equipment..."
+          placeholder="e.g. Trading, Research, Digital Products..."
         />
       </div>
 
@@ -223,14 +223,13 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-white/60">
-            We welcome inquiries from B2B partners, distributors, and institutions
-            across all industries we serve. Our team is based in Osaka, Japan.
+            We welcome inquiries about trading, consultancy and digital products from businesses, educators and creators. We are based in Osaka, Japan.
           </p>
         </motion.div>
       </section>
 
       {/* Main content — form + info */}
-      <section className="mx-auto max-w-6xl px-6 py-20 md:px-12">
+      <section id="inquiry" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-20 md:px-12">
         <div className="grid gap-16 lg:grid-cols-2">
 
           {/* Left — company info */}

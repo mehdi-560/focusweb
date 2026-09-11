@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Medical Equipment | FOCUS Co., Ltd.",
     description: "Precision Japanese medical devices for international B2B markets.",
-    url: "https://www.focus-trading.com/industries/medical-equipment",
+    url: "https://www.thefocus.jp/industries/medical-equipment",
     images: [{ url: "/images/industries/medical-equipment.jpg" }],
   },
 };
