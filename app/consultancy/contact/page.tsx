@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Request a Quote | Consultancy | FOCUS Co., Ltd.",
+  title: "Request a Quote | Market Research | FOCUS Co., Ltd.",
   description: "Request a quote for B2B research and consultancy services from FOCUS Co., Ltd. Market intelligence, competitor teardowns, lead research, and business plans.",
 };
 
-export default function ConsultancyContactPage() {
+export default function MarketResearchContactPage() {
   return (
     <main className="min-h-screen bg-background">
 
@@ -15,14 +15,14 @@ export default function ConsultancyContactPage() {
         <nav className="absolute top-6 left-6 flex items-center gap-2 text-xs text-white/50" aria-label="Breadcrumb">
           <Link href="/" className="hover:text-white transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/consultancy" className="hover:text-white transition-colors">Consultancy</Link>
+          <Link href="/consultancy" className="hover:text-white transition-colors">Market Research</Link>
           <span>/</span>
           <span className="text-white/80">Request a Quote</span>
         </nav>
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-bright">お見積もり</p>
         <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl">Request a Quote</h1>
         <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-white/60">
-          Tell us what you need. We'll confirm scope and a fixed price within one business day.
+          Tell us what you need. Our sales representative will be in touch within 24 hours.
         </p>
       </section>
 
@@ -36,7 +36,7 @@ export default function ConsultancyContactPage() {
           <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">
             Fill in your name, company, email, and describe the decision or question you need
             researched. Mention your preferred service, budget range, and timeline in the
-            message field and we will respond with a fixed-price quote within one business day.
+            message field and our sales representative will be in touch within 24 hours.
           </p>
 
           {/* What to include */}
@@ -48,7 +48,7 @@ export default function ConsultancyContactPage() {
               {[
                 "Service you're interested in (or 'Not sure — advise me')",
                 "The decision or question you need researched",
-                "Budget range: $150–300 / $300–600 / $600–1,000 / $1,000+ / Not sure",
+                "Budget, if you have one in mind (optional)",
                 "Timeline: Standard 3–7 days / Urgent 48 hours / Flexible",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-xs text-muted">
@@ -67,7 +67,7 @@ export default function ConsultancyContactPage() {
           </Link>
 
           <p className="mt-4 text-xs text-muted">
-            You'll receive scope confirmation and a fixed quote within one business day.
+            Our sales representative will be in touch within 24 hours.
           </p>
         </div>
       </section>

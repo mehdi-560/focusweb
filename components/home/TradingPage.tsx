@@ -344,14 +344,14 @@ function Hero({ locale, setLocale }: { locale: Locale; setLocale: (l: Locale) =>
 
 function BusinessGrid() {
   return (
-    <section className="bg-background px-6 py-24 md:px-12 lg:py-32" aria-labelledby="business-heading">
+    <section className="bg-background px-6 py-16 md:px-12 lg:py-20" aria-labelledby="business-heading">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-10 text-center"
         >
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">事業内容</p>
           <h2 id="business-heading" className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
@@ -421,7 +421,7 @@ function GlobalNetwork({ locale }: { locale: Locale }) {
 
   return (
     <section
-      className="px-6 py-24 md:px-12 lg:py-32"
+      className="px-6 py-16 md:px-12 lg:py-20"
       style={{ background: "linear-gradient(180deg, #f0f7fc 0%, #fcfeff 100%)" }}
       aria-labelledby="network-heading"
     >
@@ -431,7 +431,7 @@ function GlobalNetwork({ locale }: { locale: Locale }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-10 text-center"
         >
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">グローバルネットワーク</p>
           <h2 id="network-heading" className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
@@ -498,14 +498,14 @@ function GlobalNetwork({ locale }: { locale: Locale }) {
 
 function CorporateProfilePreview({ locale }: { locale: Locale }) {
   return (
-    <section className="bg-background px-6 py-24 md:px-12 lg:py-32" aria-labelledby="profile-heading">
+    <section className="bg-background px-6 py-16 md:px-12 lg:py-20" aria-labelledby="profile-heading">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-10 text-center"
         >
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">会社概要</p>
           <h2 id="profile-heading" className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
@@ -560,7 +560,7 @@ function CorporateProfilePreview({ locale }: { locale: Locale }) {
 
 function NewsroomPreview() {
   return (
-    <section className="bg-surface-1 px-6 py-24 md:px-12 lg:py-32" aria-labelledby="news-heading">
+    <section className="bg-surface-1 px-6 py-16 md:px-12 lg:py-20" aria-labelledby="news-heading">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -646,8 +646,6 @@ export default function TradingPage() {
       <Hero locale={locale} setLocale={setLocale} />
       <BusinessGrid />
       <GlobalNetwork locale={locale} />
-      <CorporateProfilePreview locale={locale} />
-      <NewsroomPreview />
     </main>
   );
 }

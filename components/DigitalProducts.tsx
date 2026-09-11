@@ -25,7 +25,7 @@ export default function DigitalProducts({ japanese = false }: { japanese?: boole
         </div>
         <div className="flex flex-col justify-center px-6 py-14 md:px-12 lg:p-16">
           <p className="mb-5 text-sm font-semibold uppercase tracking-[.16em] text-primary">{copy.label}</p>
-          <h2 id="digital-heading" className="max-w-xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">{copy.title}</h2>
+          <h1 id="digital-heading" className="max-w-xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">{copy.title}</h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg">{copy.introduction}</p>
           <h3 className="mt-9 text-xl font-semibold">{copy.statement}</h3>
           <p className="mt-3 max-w-xl leading-relaxed text-muted">{copy.description}</p>

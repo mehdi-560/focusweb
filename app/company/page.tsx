@@ -75,7 +75,7 @@ export default function CompanyPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className="min-h-screen bg-background">
+      <main className="min-h-screen bg-background"><nav className="bg-surface-1 px-6 py-4 text-center" aria-label="Company information"><Link href="/company" className="mr-8 font-semibold text-primary">Company profile</Link><Link href="/news-room" className="font-semibold text-primary">Newsroom →</Link></nav>
 
         {/* Hero */}
         <section className="relative px-6 py-28 text-center md:px-12 bg-dark">

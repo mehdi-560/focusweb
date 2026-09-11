@@ -10,8 +10,8 @@ import { motion, AnimatePresence } from "framer-motion";
 const navLinks = [
   { href: "/",           label: "Home"       },
   { href: "/trading", label: "Trading" },
-  { href: "/consultancy", label: "Consultancy" },
-  { href: "/news-room",  label: "Newsroom"   },
+  { href: "/digital-solutions", label: "Digital Solutions" },
+  { href: "/consultancy", label: "Market Research" },
   { href: "/company",    label: "Company"    },
   { href: "/contact",    label: "Contact"    },
 ];
@@ -33,7 +33,7 @@ export default function Header() {
   const ja = currentPath === "/ja" || currentPath.startsWith("/ja/");
   const pathname = ja ? currentPath.slice(3) || "/" : currentPath;
   const url = (path: string) => ja ? "/ja" + (path === "/" ? "" : path) : path;
-  const labels: Record<string, string> = {Home:"ホーム", Trading:"貿易事業", Consultancy:"コンサルティング", Newsroom:"ニュース", Company:"会社概要", Contact:"お問い合わせ", "All trading industries":"取扱分野一覧", "Automotive Export":"自動車輸出", "Medical Equipment":"医療機器", "Stationery & Consumer Goods":"文具・消費財", "Fiber & Textiles":"繊維・テキスタイル", "Industrial Materials":"産業資材"};
+  const labels: Record<string, string> = {Home:"ホーム", Trading:"貿易事業", "Digital Solutions":"デジタルソリューション", "Market Research":"市場調査", Newsroom:"ニュース", Company:"会社概要", Contact:"お問い合わせ", "All trading industries":"取扱分野一覧", "Automotive Export":"自動車輸出", "Medical Equipment":"医療機器", "Stationery & Consumer Goods":"文具・消費財", "Fiber & Textiles":"繊維・テキスタイル", "Industrial Materials":"産業資材"};
   const label = (text: string) => ja ? labels[text] || text : text;
 
   useEffect(() => {
@@ -79,6 +79,7 @@ export default function Header() {
             {navLinks.map((link) => {
               const isActive = isActiveLink(link.href);
 
+              if (link.label === "Company") return <details key="company" className="relative"><summary className="cursor-pointer rounded-lg px-3 py-2 text-sm font-medium text-foreground">{label("Company")}</summary><div className="absolute right-0 top-full w-56 rounded-lg border border-primary/15 bg-white p-2 shadow-xl"><Link href={url("/company")} className="block rounded px-4 py-3 text-sm hover:bg-surface-1">{ja?"会社概要":"Company profile"}</Link><Link href={url("/news-room")} className="block rounded px-4 py-3 text-sm hover:bg-surface-1">{label("Newsroom")}</Link></div></details>;
               if (link.label === "Trading") {
                 return (
                   <div
@@ -208,6 +209,7 @@ export default function Header() {
               <nav id="mobile-navigation" aria-label={ja ? "モバイルナビゲーション" : "Mobile navigation"} className="flex max-h-[calc(100dvh-88px)] flex-col gap-1 overflow-y-auto px-6 py-4">
                 {navLinks.map((link) => {
                   const isActive = isActiveLink(link.href);
+                  if(link.label === "Company") return <details key="company-mobile" className="rounded-lg px-3 py-2.5 text-sm"><summary className="cursor-pointer font-semibold">{label("Company")}</summary><Link href={url("/company")} className="block py-3 pl-4">{ja?"会社概要":"Company profile"}</Link><Link href={url("/news-room")} className="block py-3 pl-4">{label("Newsroom")}</Link></details>;
                   return (
                     <Link
                       key={link.href}

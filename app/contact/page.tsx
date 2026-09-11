@@ -177,7 +177,7 @@ function ContactForm() {
           role="status"
           className="rounded-xl bg-[#0c71af]/10 px-4 py-3 text-sm font-medium text-[#0c71af]"
         >
-          ✓ Thank you — your message has been received. We will respond within 1–2 business days.
+          ✓ Thank you — your message has been received. Our sales representative will be in touch within 24 hours.
         </motion.p>
       )}
       {status === "error" && (
@@ -270,7 +270,7 @@ export default function ContactPage() {
             <div className="mt-6 rounded-2xl border border-[#1096ea]/20 bg-[#1096ea]/5 p-5">
               <p className="text-sm font-medium text-[#0c71af]">Response Time</p>
               <p className="mt-1 text-sm text-[#b6bdc1]">
-                We aim to respond to all inquiries within 1–2 Japanese business days.
+                Our sales representative will be in touch within 24 hours.
                 For urgent matters, please indicate in your message.
               </p>
             </div>

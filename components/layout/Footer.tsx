@@ -14,8 +14,8 @@ const industries = [
 
 const companyLinks = [
   { href: "/trading", label: "Trading Business" },
-  { href: "/consultancy", label: "Consultancy" },
-  { href: "/consultancy#digital-products", label: "Digital Products" },
+  { href: "/consultancy", label: "Market Research" },
+  { href: "/digital-solutions", label: "Digital Solutions" },
   { href: "/industries", label: "Our Industries" },
   { href: "/company",    label: "Corporate Profile" },
   { href: "/news-room",  label: "Newsroom"       },
@@ -26,7 +26,7 @@ export default function Footer() {
   const pathname = usePathname();
   const ja = pathname === "/ja" || pathname.startsWith("/ja/");
   const url = (path: string) => ja ? "/ja" + path : path;
-  const labels: Record<string,string> = {"Automotive Export":"自動車輸出", "Medical Equipment":"医療機器", "Stationery & Consumer Goods":"文具・消費財", "Fiber & Textiles":"繊維・テキスタイル", "Industrial Materials":"産業資材", "Trading Business":"貿易事業", Consultancy:"コンサルティング", "Digital Products":"デジタル商品", "Our Industries":"取扱分野", "Corporate Profile":"会社概要", Newsroom:"ニュース", Contact:"お問い合わせ"};
+  const labels: Record<string,string> = {"Automotive Export":"自動車輸出", "Medical Equipment":"医療機器", "Stationery & Consumer Goods":"文具・消費財", "Fiber & Textiles":"繊維・テキスタイル", "Industrial Materials":"産業資材", "Trading Business":"貿易事業", "Market Research":"市場調査・競合分析", "Digital Solutions":"デジタルソリューション", "Our Industries":"取扱分野", "Corporate Profile":"会社概要", Newsroom:"ニュース", Contact:"お問い合わせ"};
   return (
     <footer
       className="text-white"
